@@ -2,16 +2,19 @@ type Project = {
   name: string
   description: string
   link: string
-  video: string
+  video?: string
+  image?: string
+  embedUrl?: string
   id: string
 }
 
-type WorkExperience = {
-  company: string
-  title: string
+type Education = {
+  school: string
+  degree: string
   start: string
   end: string
   link: string
+  logo: string
   id: string
 }
 
@@ -45,32 +48,34 @@ export const PROJECTS: Project[] = [
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
     id: 'project2',
   },
+  {
+    name: 'been',
+    description: 'Explore places I\'ve been around the world.',
+    link: 'https://beeneverywhere.net/',
+    image: '/been-preview.svg',
+    embedUrl: 'https://beeneverywhere.net/',
+    id: 'project3',
+  },
 ]
 
-export const WORK_EXPERIENCE: WorkExperience[] = [
+export const EDUCATION: Education[] = [
   {
-    company: 'Reglazed Studio',
-    title: 'CEO',
-    start: '2024',
-    end: 'Present',
-    link: 'https://ibelick.com',
-    id: 'work1',
-  },
-  {
-    company: 'Freelance',
-    title: 'Design Engineer',
+    school: 'UWC Dilijan',
+    degree: 'IB Diploma',
     start: '2022',
     end: '2024',
-    link: 'https://ibelick.com',
-    id: 'work2',
+    link: 'https://uwcdilijan.org',
+    logo: '/uwc-dilijan-logo.svg',
+    id: 'edu1',
   },
   {
-    company: 'Freelance',
-    title: 'Front-end Developer',
-    start: '2017',
-    end: 'Present',
-    link: 'https://ibelick.com',
-    id: 'work3',
+    school: 'High School',
+    degree: 'High School Diploma',
+    start: '2020',
+    end: '2022',
+    link: '#',
+    logo: '/school-logo.svg',
+    id: 'edu2',
   },
 ]
 
