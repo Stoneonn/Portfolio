@@ -8,6 +8,16 @@ type Project = {
   id: string
 }
 
+type DataProject = {
+  name: string
+  description: string
+  link: string
+  video?: string
+  image?: string
+  embedUrl?: string
+  id: string
+}
+
 type Education = {
   school: string
   degree: string
@@ -48,13 +58,37 @@ export const PROJECTS: Project[] = [
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
     id: 'project2',
   },
+]
+
+export const DATA_PROJECTS: DataProject[] = [
   {
     name: 'been',
     description: 'Explore places I\'ve been around the world.',
     link: 'https://beeneverywhere.net/',
     image: '/been-preview.svg',
     embedUrl: 'https://beeneverywhere.net/',
-    id: 'project3',
+    id: 'data1',
+  },
+  {
+    name: 'Music Journey',
+    description: 'My musical taste and listening habits over time.',
+    link: '#',
+    image: '/been-preview.svg',
+    id: 'data2',
+  },
+  {
+    name: 'Reading Stats',
+    description: 'Books I\'ve read and my reading patterns.',
+    link: '#',
+    image: '/been-preview.svg',
+    id: 'data3',
+  },
+  {
+    name: 'Coding Activity',
+    description: 'My development journey and contributions.',
+    link: '#',
+    image: '/been-preview.svg',
+    id: 'data4',
   },
 ]
 
