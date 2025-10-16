@@ -21,6 +21,11 @@ export const metadata: Metadata = {
     template: '%s | Nim'
   },
   description:  'Me as a website',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 const geist = Geist({

@@ -62,18 +62,19 @@ export const PROJECTS: Project[] = [
 
 export const DATA_PROJECTS: DataProject[] = [
   {
-    name: 'been',
-    description: 'Explore places I\'ve been around the world.',
+    name: 'Been',
+    description: 'All the places I\'ve been around the world.',
     link: 'https://beeneverywhere.net/',
-    image: '/been-preview.svg',
-    embedUrl: 'https://beeneverywhere.net/',
+    image: '/TCC.jpg',
+    embedUrl: 'https://beeneverywhere.net/user/otaskaya',
     id: 'data1',
   },
   {
-    name: 'Music Journey',
-    description: 'My musical taste and listening habits over time.',
+    name: 'Last.fm',
+    description: 'What I\'ve listened to every day for the past 4 years.',
     link: '#',
-    image: '/been-preview.svg',
+    image: '/lastfm_logo.png',
+    embedUrl: 'https://lastfmstats.com/user/otaskaya/charts',
     id: 'data2',
   },
   {
@@ -81,6 +82,7 @@ export const DATA_PROJECTS: DataProject[] = [
     description: 'Books I\'ve read and my reading patterns.',
     link: '#',
     image: '/been-preview.svg',
+    embedUrl: 'https://www.last.fm/user/otaskaya/',
     id: 'data3',
   },
   {
@@ -94,22 +96,31 @@ export const DATA_PROJECTS: DataProject[] = [
 
 export const EDUCATION: Education[] = [
   {
-    school: 'UWC Dilijan',
-    degree: 'IB Diploma',
-    start: '2022',
-    end: '2024',
-    link: 'https://uwcdilijan.org',
-    logo: '/uwc-dilijan-logo.svg',
+    school: 'Bocconi University',
+    degree: 'International Economics and Management',
+    start: '2025',
+    end: '2028',
+    link: 'https://www.unibocconi.it/en',
+    logo: '/bocconi_logo.png',
     id: 'edu1',
   },
   {
-    school: 'High School',
-    degree: 'High School Diploma',
-    start: '2020',
-    end: '2022',
-    link: '#',
-    logo: '/school-logo.svg',
+    school: 'UWC Dilijan',
+    degree: 'IB Diploma',
+    start: '2023',
+    end: '2025',
+    link: 'https://uwcdilijan.org',
+    logo: '/uwcdilijan_logo.png',
     id: 'edu2',
+  },
+  {
+    school: 'TEV İnanç Türkeş High School',
+    degree: 'T21C',
+    start: '2020',
+    end: '2023',
+    link: 'https://tevitol.k12.tr/',
+    logo: '/tevitol.png',
+    id: 'edu3',
   },
 ]
 
