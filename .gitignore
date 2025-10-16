@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# placeholder gallery images (to be replaced with actual photos)
+/public/gallery/*.jpg
+/public/gallery/*.png
+/public/gallery/*.jpeg

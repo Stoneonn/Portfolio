@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/morphing-dialog'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
+import { GallerySection } from '@/components/ui/gallery-section'
 import {
   PROJECTS,
   DATA_PROJECTS,
@@ -362,6 +363,8 @@ export default function Personal() {
           ))}
         </div>
       </motion.section>
+
+      <GallerySection />
     </motion.main>
   )
 }
