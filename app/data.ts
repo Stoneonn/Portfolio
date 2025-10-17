@@ -64,17 +64,17 @@ export const DATA_PROJECTS: DataProject[] = [
   {
     name: 'Been',
     description: 'All the places I\'ve been around the world.',
-    link: 'https://beeneverywhere.net/',
+    link: 'https://beeneverywhere.net/user/otaskaya',
     image: '/TCC.jpg',
-    embedUrl: 'https://beeneverywhere.net/user/otaskaya',
+    // Note: Some sites block iframe embedding. Remove embedUrl to open in new tab instead
     id: 'data1',
   },
   {
     name: 'Last.fm',
     description: 'What I\'ve listened to every day for the past 4 years.',
-    link: '#',
+    link: 'https://lastfmstats.com/user/otaskaya/charts',
     image: '/lastfm_logo.png',
-    embedUrl: 'https://lastfmstats.com/user/otaskaya/charts',
+    // Note: lastfmstats.com blocks iframe embedding
     id: 'data2',
   },
   {
@@ -82,7 +82,7 @@ export const DATA_PROJECTS: DataProject[] = [
     description: 'Books, books, books.',
     link: 'https://www.goodreads.com/user/show/135046786-stoneon',
     image: '/goodreads_logo.png',
-    embedUrl: 'https://www.goodreads.com/review/list/135046786-stoneon?page=1&per_page=10&shelf=read&utf8=%E2%9C%93&view=table',
+    // Note: Goodreads blocks iframe embedding
     id: 'data3',
   },
   {
@@ -90,7 +90,7 @@ export const DATA_PROJECTS: DataProject[] = [
     description: 'My top shows',
     link: 'https://www.imdb.com/user/ur143130788/ratings/?sort=top_rated%2Cdesc&view=detailed',
     image: '/imdb_logo.png',
-    embedUrl: 'https://www.imdb.com/user/ur143130788/ratings/?sort=top_rated%2Cdesc&view=detailed',
+    // Note: IMDB blocks iframe embedding
     id: 'data4',
   },
 ]
