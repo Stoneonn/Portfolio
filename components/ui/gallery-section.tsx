@@ -33,11 +33,41 @@ const GALLERY_IMAGES: GalleryImage[] = [
   {
     src: '/gallery/image1.jpg',
     alt: 'Professional speaking event',
+   aspectRatio: 'landscape',
+  },
+  {
+    src: '/gallery/image2.jpg',
+    alt: 'Apple Park visit',
     aspectRatio: 'square',
   },
   {
-    src: '/gallery/image2.JPG',
-    alt: 'Apple Park visit',
+    src: '/gallery/image3.jpg',
+    alt: 'Desert adventure on quad bike',
+    aspectRatio: 'portrait',
+  },
+  {
+    src: '/gallery/image4.jpg',
+    alt: 'Night out with friends',
+    aspectRatio: 'square',
+  },
+  {
+    src: '/gallery/image5.jpg',
+    alt: 'Tech conference moment',
+    aspectRatio: 'landscape',
+  },
+  {
+    src: '/gallery/image6.jpg',
+    alt: 'Travel destination',
+    aspectRatio: 'portrait',
+  },
+  {
+    src: '/gallery/image7.jpg',
+    alt: 'Casual social gathering',
+    aspectRatio: 'square',
+  },
+  {
+    src: '/gallery/image8.jpg',
+    alt: 'Work environment',
     aspectRatio: 'landscape',
   },
  

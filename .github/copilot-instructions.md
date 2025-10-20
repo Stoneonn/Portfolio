@@ -4,6 +4,8 @@
 
 This is a personal portfolio website built with **Next.js 15 App Router**, **React 19**, **Tailwind CSS v4**, and **Motion** (Framer Motion). The project is a template for developers/designers to showcase their work with minimal, animated UI components from [Motion-Primitives](https://motion-primitives.com).
 
+**📚 For detailed Motion Primitives UI Kit usage, see [MOTION_PRIMITIVES_GUIDE.md](MOTION_PRIMITIVES_GUIDE.md)** - A comprehensive reference for all 30+ available animated components with examples, props, and integration patterns.
+
 ## Architecture & Key Patterns
 
 ### Single-Page Layout with Centralized Data
@@ -25,6 +27,9 @@ This is a personal portfolio website built with **Next.js 15 App Router**, **Rea
 - UI components live in `components/ui/` and are prefixed with descriptive names
 - Motion primitives: `animated-background.tsx`, `magnetic.tsx`, `morphing-dialog.tsx`, `spotlight.tsx`, `text-effect.tsx`, `text-morph.tsx`, `scroll-progress.tsx`
 - All UI components use `'use client'` directive (client-side interactivity required)
+- **Motion Primitives Library**: 30+ pre-built animated components available in `motion-primitives-main/components/core/`
+  - Use CLI to add components: `npx motion-primitives add <component-name>`
+  - See [MOTION_PRIMITIVES_GUIDE.md](MOTION_PRIMITIVES_GUIDE.md) for complete component reference
 
 ### MDX Blog System
 
