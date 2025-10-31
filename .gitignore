@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+/web/node_modules
 /node_modules
 /.pnp
 .pnp.*
@@ -12,13 +13,17 @@
 
 # testing
 /coverage
+/web/coverage
 
 # next.js
+/web/.next/
 /.next/
+/web/out/
 /out/
 
 # production
 /build
+/web/build
 
 # misc
 .DS_Store
@@ -44,3 +49,6 @@ next-env.d.ts
 /public/gallery/*.jpg
 /public/gallery/*.png
 /public/gallery/*.jpeg
+/web/public/gallery/*.jpg
+/web/public/gallery/*.png
+/web/public/gallery/*.jpeg

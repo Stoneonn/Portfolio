@@ -16,7 +16,7 @@ The "Data" section is now live on your portfolio, located between Projects and E
 
 **To Complete:**
 
-Edit `/app/data.ts` and update these placeholder projects:
+Edit `/web/app/data.ts` and update these placeholder projects:
 
 ```typescript
 export const DATA_PROJECTS: DataProject[] = [
@@ -77,9 +77,9 @@ The Gallery section is ready but needs your photos!
    - Tech/hobby moments
    - Mix of orientations (portrait, landscape, square)
 
-2. **Add Photos to `/public/gallery/`:**
+2. **Add Photos to `/web/public/gallery/`:**
    ```
-   /public/gallery/
+   /web/public/gallery/
    ├── image1.jpg  → Professional speaking event or similar
    ├── image2.jpg  → Apple Park visit or tech-related photo
    ├── image3.jpg  → Desert adventure or outdoor (portrait)
@@ -97,7 +97,7 @@ The Gallery section is ready but needs your photos!
    - Next.js will automatically optimize them
 
 4. **Customize Alt Tags (Optional):**
-   Edit `/components/ui/gallery-section.tsx` to update the alt descriptions:
+   Edit `/web/components/ui/gallery-section.tsx` to update the alt descriptions:
    ```typescript
    const GALLERY_IMAGES: GalleryImage[] = [
      {
@@ -114,10 +114,10 @@ The Gallery section is ready but needs your photos!
 ## 🎨 Customization Options
 
 ### Change Number of Images
-Edit `GALLERY_IMAGES` array in `/components/ui/gallery-section.tsx` - add or remove entries.
+Edit `GALLERY_IMAGES` array in `/web/components/ui/gallery-section.tsx` - add or remove entries.
 
 ### Adjust Grid Layout
-In `/components/ui/gallery-section.tsx`, line 101:
+In `/web/components/ui/gallery-section.tsx`, line 101:
 ```typescript
 // Current: 2 cols mobile, 3 tablet, 4 desktop, 5 xl
 <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
@@ -136,14 +136,19 @@ In the `GALLERY_IMAGES` array, set:
 
 ## 🚀 Testing Your Changes
 
-1. **Start Development Server:**
+1. **Navigate to web directory:**
+   ```bash
+   cd web
+   ```
+
+2. **Start Development Server:**
    ```bash
    npm run dev
    ```
 
-2. **Visit:** http://localhost:3000
+3. **Visit:** http://localhost:3000
 
-3. **Check:**
+4. **Check:**
    - Data section displays 4 projects
    - Gallery section shows your photos
    - Hover effects work smoothly
@@ -153,9 +158,9 @@ In the `GALLERY_IMAGES` array, set:
 
 ## 📝 Files Changed
 
-- `app/data.ts` - Added DATA_PROJECTS
-- `app/page.tsx` - Added Data and Gallery sections
-- `components/ui/gallery-section.tsx` - New gallery component
+- `web/app/data.ts` - Added DATA_PROJECTS
+- `web/app/page.tsx` - Added Data and Gallery sections
+- `web/components/ui/gallery-section.tsx` - New gallery component
 - `.gitignore` - Gallery images excluded (so you can customize)
 
 ---
