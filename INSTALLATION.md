@@ -14,21 +14,29 @@
    cd nim
    ```
 
-2. **Install dependencies**
+2. **Navigate to the web directory**
+
+   The Next.js application is located in the `web` subdirectory:
+
+   ```bash
+   cd web
+   ```
+
+3. **Install dependencies**
 
    ```bash
    npm install
    ```
 
-3. **Run the development server**
+4. **Run the development server**
 
    ```bash
    npm run dev
    ```
 
-4. **Update the template data**
+5. **Update the template data**
 
-   Update the template data in the `app/data.ts` file.
+   Update the template data in the `app/data.ts` file (inside the `web` directory).
 
    ```ts
    export const EMAIL = 'your@email.com'
@@ -44,10 +52,10 @@
    ...
    ```
 
-5. **Add your blog posts**
+6. **Add your blog posts**
 
 Create a new .mdx file for each blog post inside the app/blog folder. For example:
-app/blog/your-article-slug/page.mdx.
+`web/app/blog/your-article-slug/page.mdx`.
 
 Example blog post structure in .mdx:
 
@@ -65,17 +73,35 @@ Your content here...
 
 **Note:** You can use all MDX features, including React components, in your blog posts.
 
-6. **Project Structure**
+7. **Project Structure**
+
+The repository structure separates the Next.js app from other files:
+
+```
+Portfolio/
+├── web/              # Next.js application
+│   ├── app/         # App router pages and layouts
+│   ├── components/  # React components
+│   ├── public/      # Static assets
+│   └── ...          # Other Next.js files
+└── ...              # Other files/projects
+```
 
 For a better understanding of the Next.js project structure, refer to the [Next.js](https://nextjs.org/docs/app/getting-started/project-structure) documentation.
 
-7. **Additional Features**
+8. **Additional Features**
 
 Want to add more animated components?
 Check out [Motion-Primitives](https://motion-primitives.com/) for additional animation components and templates. If you want something else DM on [X](https://x.com/Ibelick).
 
-8.  **Deployment**
+9.  **Deployment**
 
 You can deploy your site to any hosting platform that supports Next.js. For the easiest deployment experience, consider using Vercel:
+
+**Important:** When deploying to Vercel, set the **Root Directory** to `web` in your project settings:
+1. Go to your project settings on Vercel
+2. Navigate to Settings → General → Root Directory
+3. Set the value to `web`
+4. Save and redeploy
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fibelick%2Fnim&env=NEXT_PUBLIC_SITE_URL&project-name=nim&repository-name=nim&redirect-url=https%3A%2F%2Ftwitter.com%2Fibelick&demo-title=Nim&demo-description=Nim%20is%20a%20free%20and%20open-source%20minimal%20personal%20website%20template%20built%20with%20Next.js%2015%2C%20React%2019%2C%20and%20Motion-Primitives.&demo-url=https%3A%2F%2Fnim.vercel.app&demo-image=https%3A%2F%2Fraw.githubusercontent.com%2Fibelick%2Fnim%2Frefs%2Fheads%2Fmain%2F.github%2Fassets%2Freadme.png&teamSlug=ibelick)

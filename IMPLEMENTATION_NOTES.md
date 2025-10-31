@@ -11,7 +11,7 @@ A new section called "Data" showcases your life through data visualizations, sim
 **Location:** Between Projects and Education sections
 
 **Changes Made:**
-- `app/data.ts`: 
+- `web/app/data.ts`: 
   - Added `DataProject` type (identical to `Project` type for consistency)
   - Created `DATA_PROJECTS` array with 4 items:
     1. **been** - Moved from Projects to Data (shows places you've been)
@@ -19,13 +19,13 @@ A new section called "Data" showcases your life through data visualizations, sim
     3. **Reading Stats** - Placeholder for reading patterns
     4. **Coding Activity** - Placeholder for development contributions
 
-- `app/page.tsx`:
+- `web/app/page.tsx`:
   - Imported `DATA_PROJECTS` from data.ts
   - Added new "Data" section after Projects using the same layout/styling
   - Includes support for videos, embeds, and static images
 
 **To Customize:**
-Edit `/app/data.ts` and update the `DATA_PROJECTS` array with your actual data visualization links and images.
+Edit `/web/app/data.ts` and update the `DATA_PROJECTS` array with your actual data visualization links and images.
 
 ---
 
@@ -69,13 +69,13 @@ A visually stunning photo grid that showcases your personality and experiences t
   - ARIA labels for screen readers
 
 **Files Created:**
-- `components/ui/gallery-section.tsx` - The main gallery component
-- `public/gallery/` - Directory for gallery images
-- `public/gallery/README.md` - Instructions for adding images
+- `web/components/ui/gallery-section.tsx` - The main gallery component
+- `web/public/gallery/` - Directory for gallery images
+- `web/public/gallery/README.md` - Instructions for adding images
 
 **How to Add Your Photos:**
 
-1. Add 8 images to `/public/gallery/` with these names:
+1. Add 8 images to `/web/public/gallery/` with these names:
    - `image1.jpg` - Professional speaking event
    - `image2.jpg` - Apple Park visit (or tech photo)
    - `image3.jpg` - Desert adventure (portrait)
@@ -98,7 +98,7 @@ A visually stunning photo grid that showcases your personality and experiences t
 
 **To Customize:**
 
-Edit `/components/ui/gallery-section.tsx`:
+Edit `/web/components/ui/gallery-section.tsx`:
 
 ```typescript
 const GALLERY_IMAGES: GalleryImage[] = [
@@ -127,18 +127,18 @@ Both features follow the established patterns in your portfolio:
 
 ## Files Modified
 
-1. `app/data.ts` - Added DATA_PROJECTS type and array
-2. `app/page.tsx` - Added Data section and GallerySection import/render
-3. `components/ui/gallery-section.tsx` - New component (created)
+1. `web/app/data.ts` - Added DATA_PROJECTS type and array
+2. `web/app/page.tsx` - Added Data section and GallerySection import/render
+3. `web/components/ui/gallery-section.tsx` - New component (created)
 4. `.gitignore` - Added gallery image exclusions
-5. `public/gallery/README.md` - Instructions for users (created)
+5. `web/public/gallery/README.md` - Instructions for users (created)
 
 ---
 
 ## Next Steps
 
-1. **Add Real Images:** Replace placeholder files in `/public/gallery/` with your actual photos
-2. **Update Data Projects:** Edit `app/data.ts` to add real links for Music, Reading, and Coding projects
+1. **Add Real Images:** Replace placeholder files in `/web/public/gallery/` with your actual photos
+2. **Update Data Projects:** Edit `web/app/data.ts` to add real links for Music, Reading, and Coding projects
 3. **Test Responsiveness:** View the site on different screen sizes to ensure everything looks great
 4. **Customize Gallery:** Adjust number of images, aspect ratios, or layout in `gallery-section.tsx`
 
@@ -150,3 +150,4 @@ Both features follow the established patterns in your portfolio:
 - The Data section uses the same styling as Projects for visual consistency
 - All hover effects work on both mouse and keyboard navigation
 - Dark mode is fully supported for both new sections
+- The Next.js app is located in the `web/` subdirectory to allow other unrelated files at the repository root
