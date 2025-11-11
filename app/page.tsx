@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'motion/react'
 import { Dock, DockItem, DockIcon, DockLabel } from "@/components/ui/dock";
-import { Home, Package, Component, Activity, Mail } from "lucide-react";
+import { Home, FolderOpenDot, Activity, Book, Mail } from "lucide-react";
 import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
@@ -40,6 +40,21 @@ const VARIANTS_SECTION = {
 
 const TRANSITION_SECTION = {
   duration: 0.3,
+}
+
+// Helper function to scroll to section
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId)
+  if (element) {
+    const offset = 80
+    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+    const offsetPosition = elementPosition - offset
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
+  }
 }
 
 type ProjectVideoProps = {
@@ -182,6 +197,7 @@ export default function Personal() {
       animate="visible"
     >
       <motion.section
+        id="home"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -194,6 +210,7 @@ export default function Personal() {
       </motion.section>
 
       <motion.section
+        id="projects"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -226,6 +243,7 @@ export default function Personal() {
       </motion.section>
 
       <motion.section
+        id="data"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -265,6 +283,7 @@ export default function Personal() {
       </motion.section>
 
       <motion.section
+        id="education"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -346,6 +365,7 @@ export default function Personal() {
       </motion.section>
 
       <motion.section
+        id="contact"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -373,22 +393,22 @@ export default function Personal() {
       <DockLabel>Home</DockLabel>
     </DockItem>
 
-    <DockItem>
-      <DockIcon><Package className="h-6 w-6 text-zinc-200" /></DockIcon>
+    <DockItem onClick={() => scrollToSection('projects')}>
+      <DockIcon><FolderOpenDot className="h-6 w-6 text-zinc-200" /></DockIcon>
       <DockLabel>Projects</DockLabel>
     </DockItem>
 
-    <DockItem>
-      <DockIcon><Component className="h-6 w-6 text-zinc-200" /></DockIcon>
-      <DockLabel>Components</DockLabel>
-    </DockItem>
-
-    <DockItem>
+    <DockItem onClick={() => scrollToSection('data')}>
       <DockIcon><Activity className="h-6 w-6 text-zinc-200" /></DockIcon>
-      <DockLabel>Activity</DockLabel>
+      <DockLabel>Data</DockLabel>
     </DockItem>
 
-    <DockItem>
+    <DockItem onClick={() => scrollToSection('education')}>
+      <DockIcon><Book className="h-6 w-6 text-zinc-200" /></DockIcon>
+      <DockLabel>Education</DockLabel>
+    </DockItem>
+
+    <DockItem onClick={() => scrollToSection('contact')}>
       <DockIcon><Mail className="h-6 w-6 text-zinc-200" /></DockIcon>
       <DockLabel>Contact</DockLabel>
     </DockItem>
