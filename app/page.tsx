@@ -190,7 +190,7 @@ function MagneticSocialLink({
   )
 }
 
-export function ProgressiveBlurSlider() {
+function ProgressiveBlurSlider() {
   return (
     <div className="relative h-[350px] w-screen overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)' }}>
       <InfiniteSlider className="flex h-full w-full items-center">
