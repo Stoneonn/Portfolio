@@ -1,4 +1,6 @@
 'use client'
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
+import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import { motion } from 'motion/react'
 import { Dock, DockItem, DockIcon, DockLabel } from "@/components/ui/dock";
 import { Home, FolderOpenDot, Activity, Book, Mail } from "lucide-react";
@@ -186,6 +188,31 @@ function MagneticSocialLink({
       </a>
     </Magnetic>
   )
+}
+
+export function ProgressiveBlurSlider() {
+  return (
+    <div className="relative h-[350px] w-screen overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)' }}>
+      <InfiniteSlider className="flex h-full w-full items-center">
+        {["Ö","M","E","R","T","A","Ş","K","A","Y","A","Ö","M","E","R","T","A","Ş","K","A","Y","A"].map(n => (
+          <div key={n} className="w-16 text-center text-4xl font-[450] text-black dark:text-white">
+            {n}
+          </div>
+        ))}
+      </InfiniteSlider>
+
+      <ProgressiveBlur
+        className="pointer-events-none absolute top-0 left-0 h-full w-[200px]"
+        direction="left"
+        blurIntensity={1}
+      />
+      <ProgressiveBlur
+        className="pointer-events-none absolute top-0 right-0 h-full w-[200px]"
+        direction="right"
+        blurIntensity={1}
+      />
+    </div>
+  );
 }
 
 export default function Personal() {
@@ -385,8 +412,12 @@ export default function Personal() {
         </div>
       </motion.section>
 
+<motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION} className="-my-20">
+  <ProgressiveBlurSlider />
+</motion.section>
+
 {/* Dock — fixed at bottom center */}
-<div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50">
+<div className="fixed bottom-18 left-1/2 -translate-x-1/2 z-50">
   <Dock magnification={80} distance={150} panelHeight={64}>
     <DockItem onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
       <DockIcon><Home className="h-6 w-6 text-zinc-200" /></DockIcon>
@@ -414,6 +445,7 @@ export default function Personal() {
     </DockItem>
   </Dock>
 </div>
+
 
     </motion.main>
   )
