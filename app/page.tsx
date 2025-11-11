@@ -1,5 +1,7 @@
 'use client'
 import { motion } from 'motion/react'
+import { Dock, DockItem, DockIcon, DockLabel } from "@/components/ui/dock";
+import { Home, Package, Component, Activity, Mail } from "lucide-react";
 import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
@@ -12,7 +14,6 @@ import {
 } from '@/components/ui/morphing-dialog'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
-import { GallerySection } from '@/components/ui/gallery-section'
 import {
   PROJECTS,
   DATA_PROJECTS,
@@ -308,8 +309,7 @@ export default function Personal() {
         </div>
       </motion.section>
 
-      {/* Temporarily hidden - Blog section */}
-      {/* <motion.section
+      <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -343,7 +343,7 @@ export default function Personal() {
             ))}
           </AnimatedBackground>
         </div>
-      </motion.section> */}
+      </motion.section>
 
       <motion.section
         variants={VARIANTS_SECTION}
@@ -365,7 +365,36 @@ export default function Personal() {
         </div>
       </motion.section>
 
-      <GallerySection />
+{/* Dock — fixed at bottom center */}
+<div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50">
+  <Dock magnification={80} distance={150} panelHeight={64}>
+    <DockItem onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+      <DockIcon><Home className="h-6 w-6 text-zinc-200" /></DockIcon>
+      <DockLabel>Home</DockLabel>
+    </DockItem>
+
+    <DockItem>
+      <DockIcon><Package className="h-6 w-6 text-zinc-200" /></DockIcon>
+      <DockLabel>Projects</DockLabel>
+    </DockItem>
+
+    <DockItem>
+      <DockIcon><Component className="h-6 w-6 text-zinc-200" /></DockIcon>
+      <DockLabel>Components</DockLabel>
+    </DockItem>
+
+    <DockItem>
+      <DockIcon><Activity className="h-6 w-6 text-zinc-200" /></DockIcon>
+      <DockLabel>Activity</DockLabel>
+    </DockItem>
+
+    <DockItem>
+      <DockIcon><Mail className="h-6 w-6 text-zinc-200" /></DockIcon>
+      <DockLabel>Contact</DockLabel>
+    </DockItem>
+  </Dock>
+</div>
+
     </motion.main>
   )
 }
