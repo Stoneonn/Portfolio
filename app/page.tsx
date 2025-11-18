@@ -1,12 +1,13 @@
 'use client'
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
-import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import { motion } from 'motion/react'
 import { Dock, DockItem, DockIcon, DockLabel } from "@/components/ui/dock";
-import { Home, FolderOpenDot, Activity, Book, Mail } from "lucide-react";
+import { Home, FolderOpenDot, Activity, Book, Mail, Sun, Moon, Monitor } from "lucide-react";
 import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
+import { useTheme } from 'next-themes'
+import { useState, useEffect } from 'react'
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -192,30 +193,79 @@ function MagneticSocialLink({
 
 function ProgressiveBlurSlider() {
   return (
-    <div className="relative h-[350px] w-screen overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)' }}>
+    <div className="relative h-[350px] w-screen overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)', transform: 'rotate(-15deg)' }}>
       <InfiniteSlider className="flex h-full w-full items-center">
-        {["Ö","M","E","R","T","A","Ş","K","A","Y","A","Ö","M","E","R","T","A","Ş","K","A","Y","A"].map(n => (
-          <div key={n} className="w-16 text-center text-4xl font-[450] text-black dark:text-white">
-            {n}
+        {["Ö","M","E","R","T","A","Ş","K","A","Y","A","Ö","M","E","R","T","A","Ş","K","A","Y","A"].map((letter, index) => (
+          <div key={`${letter}-${index}`} className="w-16 text-center text-4xl font-[450] text-black dark:text-white">
+            {letter}
           </div>
         ))}
       </InfiniteSlider>
+    </div>
+  );
+}
 
-      <ProgressiveBlur
-        className="pointer-events-none absolute top-0 left-0 h-full w-[200px]"
-        direction="left"
-        blurIntensity={1}
-      />
-      <ProgressiveBlur
-        className="pointer-events-none absolute top-0 right-0 h-full w-[200px]"
-        direction="right"
-        blurIntensity={1}
-      />
+function ProgressiveBlurSliderClockwise() {
+  return (
+    <div className="relative h-[350px] w-screen overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)', transform: 'rotate(15deg)' }}>
+      <InfiniteSlider className="flex h-full w-full items-center" reverse={true}>
+        {["Ö","M","E","R","T","A","Ş","K","A","Y","A","Ö","M","E","R","T","A","Ş","K","A","Y","A"].map((letter, index) => (
+          <div key={`${letter}-${index}`} className="w-16 text-center text-4xl font-[450] text-black dark:text-white">
+            {letter}
+          </div>
+        ))}
+      </InfiniteSlider>
     </div>
   );
 }
 
 export default function Personal() {
+  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const cycleTheme = () => {
+    if (!mounted) return
+    
+    const themes = ['light', 'dark', 'system']
+    const currentIndex = themes.indexOf(theme || 'system')
+    const nextIndex = (currentIndex + 1) % themes.length
+    setTheme(themes[nextIndex])
+  }
+
+  const getThemeIcon = () => {
+    if (!mounted) return <Sun className="h-6 w-6 text-zinc-200" />
+    
+    switch (theme) {
+      case 'light':
+        return <Sun className="h-6 w-6 text-zinc-200" />
+      case 'dark':
+        return <Moon className="h-6 w-6 text-zinc-200" />
+      case 'system':
+        return <Monitor className="h-6 w-6 text-zinc-200" />
+      default:
+        return <Sun className="h-6 w-6 text-zinc-200" />
+    }
+  }
+
+  const getThemeLabel = () => {
+    if (!mounted) return 'Theme'
+    
+    switch (theme) {
+      case 'light':
+        return 'Light'
+      case 'dark':
+        return 'Dark'
+      case 'system':
+        return 'System'
+      default:
+        return 'Theme'
+    }
+  }
+
   return (
     <motion.main
       className="space-y-24"
@@ -412,13 +462,28 @@ export default function Personal() {
         </div>
       </motion.section>
 
-<motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION} className="-my-20">
-  <ProgressiveBlurSlider />
+<motion.section
+  variants={VARIANTS_SECTION}
+  transition={TRANSITION_SECTION}
+  className="relative -mb-24 mt-32 w-full pointer-events-none"
+  aria-hidden="true"
+>
+  <div className="relative">
+    <ProgressiveBlurSlider />
+    <div className="absolute inset-0">
+      <ProgressiveBlurSliderClockwise />
+    </div>
+  </div>
 </motion.section>
 
 {/* Dock — fixed at bottom center */}
 <div className="fixed bottom-18 left-1/2 -translate-x-1/2 z-50">
   <Dock magnification={80} distance={150} panelHeight={64}>
+    <DockItem onClick={cycleTheme}>
+      <DockIcon>{getThemeIcon()}</DockIcon>
+      <DockLabel>{getThemeLabel()}</DockLabel>
+    </DockItem>
+
     <DockItem onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
       <DockIcon><Home className="h-6 w-6 text-zinc-200" /></DockIcon>
       <DockLabel>Home</DockLabel>
