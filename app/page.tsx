@@ -1,5 +1,6 @@
 'use client'
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
+import { Gallery } from '@/components/gallery'
 import { motion } from 'motion/react'
 import { Dock, DockItem, DockIcon, DockLabel } from "@/components/ui/dock";
 import { Home, FolderOpenDot, Activity, Book, Mail, Sun, Moon, Monitor } from "lucide-react";
@@ -195,7 +196,7 @@ function ProgressiveBlurSlider() {
   return (
     <div className="relative h-[350px] w-screen overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)', transform: 'rotate(-15deg)' }}>
       <InfiniteSlider className="flex h-full w-full items-center">
-        {["Ö","M","E","R","T","A","Ş","K","A","Y","A","Ö","M","E","R","T","A","Ş","K","A","Y","A"].map((letter, index) => (
+        {["Ö", "M", "E", "R", "T", "A", "Ş", "K", "A", "Y", "A", "Ö", "M", "E", "R", "T", "A", "Ş", "K", "A", "Y", "A"].map((letter, index) => (
           <div key={`${letter}-${index}`} className="w-16 text-center text-4xl font-[450] text-black dark:text-white">
             {letter}
           </div>
@@ -209,7 +210,7 @@ function ProgressiveBlurSliderClockwise() {
   return (
     <div className="relative h-[350px] w-screen overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)', transform: 'rotate(15deg)' }}>
       <InfiniteSlider className="flex h-full w-full items-center" reverse={true}>
-        {["Ö","M","E","R","T","A","Ş","K","A","Y","A","Ö","M","E","R","T","A","Ş","K","A","Y","A"].map((letter, index) => (
+        {["Ö", "M", "E", "R", "T", "A", "Ş", "K", "A", "Y", "A", "Ö", "M", "E", "R", "T", "A", "Ş", "K", "A", "Y", "A"].map((letter, index) => (
           <div key={`${letter}-${index}`} className="w-16 text-center text-4xl font-[450] text-black dark:text-white">
             {letter}
           </div>
@@ -229,7 +230,7 @@ export default function Personal() {
 
   const cycleTheme = () => {
     if (!mounted) return
-    
+
     const themes = ['light', 'dark', 'system']
     const currentIndex = themes.indexOf(theme || 'system')
     const nextIndex = (currentIndex + 1) % themes.length
@@ -238,7 +239,7 @@ export default function Personal() {
 
   const getThemeIcon = () => {
     if (!mounted) return <Sun className="h-6 w-6 text-zinc-200" />
-    
+
     switch (theme) {
       case 'light':
         return <Sun className="h-6 w-6 text-zinc-200" />
@@ -253,7 +254,7 @@ export default function Personal() {
 
   const getThemeLabel = () => {
     if (!mounted) return 'Theme'
-    
+
     switch (theme) {
       case 'light':
         return 'Light'
@@ -278,12 +279,8 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <div className="flex-1">
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Hey, I&apos;m Ömer. I aspire to be a lot of things, you'll see.
-            
-          </p>
-        </div>
+
+        <Gallery />
       </motion.section>
 
       <motion.section
@@ -462,54 +459,54 @@ export default function Personal() {
         </div>
       </motion.section>
 
-<motion.section
-  variants={VARIANTS_SECTION}
-  transition={TRANSITION_SECTION}
-  className="relative -mb-24 mt-32 w-full pointer-events-none"
-  aria-hidden="true"
->
-  <div className="relative">
-    <ProgressiveBlurSlider />
-    <div className="absolute inset-0">
-      <ProgressiveBlurSliderClockwise />
-    </div>
-  </div>
-</motion.section>
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+        className="relative -mb-24 mt-32 w-full pointer-events-none"
+        aria-hidden="true"
+      >
+        <div className="relative">
+          <ProgressiveBlurSlider />
+          <div className="absolute inset-0">
+            <ProgressiveBlurSliderClockwise />
+          </div>
+        </div>
+      </motion.section>
 
-{/* Dock — fixed at bottom center */}
-<div className="fixed bottom-18 left-1/2 -translate-x-1/2 z-50">
-  <Dock magnification={80} distance={150} panelHeight={64}>
-    <DockItem onClick={cycleTheme}>
-      <DockIcon>{getThemeIcon()}</DockIcon>
-      <DockLabel>{getThemeLabel()}</DockLabel>
-    </DockItem>
+      {/* Dock — fixed at bottom center */}
+      <div className="fixed bottom-18 left-1/2 -translate-x-1/2 z-50">
+        <Dock magnification={80} distance={150} panelHeight={64}>
+          <DockItem onClick={cycleTheme}>
+            <DockIcon>{getThemeIcon()}</DockIcon>
+            <DockLabel>{getThemeLabel()}</DockLabel>
+          </DockItem>
 
-    <DockItem onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-      <DockIcon><Home className="h-6 w-6 text-zinc-200" /></DockIcon>
-      <DockLabel>Home</DockLabel>
-    </DockItem>
+          <DockItem onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            <DockIcon><Home className="h-6 w-6 text-zinc-200" /></DockIcon>
+            <DockLabel>Home</DockLabel>
+          </DockItem>
 
-    <DockItem onClick={() => scrollToSection('projects')}>
-      <DockIcon><FolderOpenDot className="h-6 w-6 text-zinc-200" /></DockIcon>
-      <DockLabel>Projects</DockLabel>
-    </DockItem>
+          <DockItem onClick={() => scrollToSection('projects')}>
+            <DockIcon><FolderOpenDot className="h-6 w-6 text-zinc-200" /></DockIcon>
+            <DockLabel>Projects</DockLabel>
+          </DockItem>
 
-    <DockItem onClick={() => scrollToSection('data')}>
-      <DockIcon><Activity className="h-6 w-6 text-zinc-200" /></DockIcon>
-      <DockLabel>Data</DockLabel>
-    </DockItem>
+          <DockItem onClick={() => scrollToSection('data')}>
+            <DockIcon><Activity className="h-6 w-6 text-zinc-200" /></DockIcon>
+            <DockLabel>Data</DockLabel>
+          </DockItem>
 
-    <DockItem onClick={() => scrollToSection('education')}>
-      <DockIcon><Book className="h-6 w-6 text-zinc-200" /></DockIcon>
-      <DockLabel>Education</DockLabel>
-    </DockItem>
+          <DockItem onClick={() => scrollToSection('education')}>
+            <DockIcon><Book className="h-6 w-6 text-zinc-200" /></DockIcon>
+            <DockLabel>Education</DockLabel>
+          </DockItem>
 
-    <DockItem onClick={() => scrollToSection('contact')}>
-      <DockIcon><Mail className="h-6 w-6 text-zinc-200" /></DockIcon>
-      <DockLabel>Contact</DockLabel>
-    </DockItem>
-  </Dock>
-</div>
+          <DockItem onClick={() => scrollToSection('contact')}>
+            <DockIcon><Mail className="h-6 w-6 text-zinc-200" /></DockIcon>
+            <DockLabel>Contact</DockLabel>
+          </DockItem>
+        </Dock>
+      </div>
 
 
     </motion.main>

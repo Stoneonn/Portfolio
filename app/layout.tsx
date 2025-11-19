@@ -1,9 +1,16 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import { Header } from './header'
 import { Footer } from './footer'
 import { ThemeProvider } from 'next-themes'
+
+const canela = localFont({
+  src: './fonts/Canela-Medium.ttf',
+  variable: '--font-canela',
+  weight: '500',
+})
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -20,7 +27,7 @@ export const metadata: Metadata = {
     default: 'otaskaya, это я',
     template: '%s | Nim'
   },
-  description:  'Me as a website',
+  description: 'Me as a website',
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
@@ -46,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${geist.variable} ${geistMono.variable} ${canela.variable} bg-[#FAFAFA] tracking-tight antialiased dark:bg-zinc-950`}
       >
         <ThemeProvider
           enableSystem={true}
@@ -55,7 +62,7 @@ export default function RootLayout({
           defaultTheme="system"
         >
           <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
-            <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
+            <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-12">
               <Header />
               {children}
               <Footer />
