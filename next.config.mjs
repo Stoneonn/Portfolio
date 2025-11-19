@@ -1,4 +1,4 @@
-import createMDX from '@next/mdx';
+import createMDX from '@next/mdx'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -9,13 +9,13 @@ const nextConfig = {
     config.watchOptions = {
       ...config.watchOptions,
       ignored: ['**/node_modules', '**/motion-primitives-main/**'],
-    };
-    return config;
+    }
+    return config
   },
-};
+}
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
-});
+})
 
-export default withMDX(nextConfig);
+export default withMDX(nextConfig)

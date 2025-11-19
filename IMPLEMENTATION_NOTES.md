@@ -11,7 +11,9 @@ A new section called "Data" showcases your life through data visualizations, sim
 **Location:** Between Projects and Education sections
 
 **Changes Made:**
-- `app/data.ts`: 
+
+- `app/data.ts`:
+
   - Added `DataProject` type (identical to `Project` type for consistency)
   - Created `DATA_PROJECTS` array with 4 items:
     1. **been** - Moved from Projects to Data (shows places you've been)
@@ -36,29 +38,35 @@ A visually stunning photo grid that showcases your personality and experiences t
 **Location:** After the "Connect with me!" section (end of page)
 
 **Features Implemented:**
+
 - ✅ Responsive grid layout:
+
   - **Desktop (1280px+):** 5 columns
   - **Large (1024px+):** 4 columns
   - **Tablet (768px+):** 3 columns
   - **Mobile:** 2 columns
 
 - ✅ Organic collage layout with varied aspect ratios:
+
   - **Landscape** images span 2 columns
   - **Portrait** images span 2 rows
   - **Square** images fit in single cells
 
 - ✅ Premium design elements:
+
   - Deep dark background (uses existing dark theme)
   - Subtle white/gray border (ring-1 ring-white/10)
   - Large rounded corners (rounded-3xl = 1.5rem)
   - Clean spacing with consistent gaps
 
 - ✅ Smooth hover animations:
+
   - Scale-up effect (110% zoom on hover)
   - Shadow glow with gradient overlay
   - Smooth transitions (500ms duration)
 
 - ✅ Next.js Image optimization:
+
   - Automatic responsive image sizing
   - Lazy loading for performance
   - Optimized delivery based on device
@@ -69,6 +77,7 @@ A visually stunning photo grid that showcases your personality and experiences t
   - ARIA labels for screen readers
 
 **Files Created:**
+
 - `components/ui/gallery-section.tsx` - The main gallery component
 - `public/gallery/` - Directory for gallery images
 - `public/gallery/README.md` - Instructions for adding images
@@ -76,6 +85,7 @@ A visually stunning photo grid that showcases your personality and experiences t
 **How to Add Your Photos:**
 
 1. Add 8 images to `/public/gallery/` with these names:
+
    - `image1.jpg` - Professional speaking event
    - `image2.jpg` - Apple Park visit (or tech photo)
    - `image3.jpg` - Desert adventure (portrait)
@@ -86,6 +96,7 @@ A visually stunning photo grid that showcases your personality and experiences t
    - `image8.jpg` - Work environment
 
 2. Recommended image specifications:
+
    - **Minimum width:** 800px
    - **Optimal width:** 1200-1600px
    - **Formats:** .jpg, .jpeg, .png

@@ -10,7 +10,7 @@ import {
 import { useState, useEffect, Children } from 'react'
 
 export type TextLoopProps = {
-  children: React.ReactNode[]
+  children: React.ReactNode | React.ReactNode[]
   className?: string
   interval?: number
   transition?: Transition

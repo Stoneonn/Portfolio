@@ -1,9 +1,18 @@
 'use client'
-import { InfiniteSlider } from "@/components/ui/infinite-slider";
+import { InfiniteSlider } from '@/components/ui/infinite-slider'
 import { Gallery } from '@/components/gallery'
 import { motion } from 'motion/react'
-import { Dock, DockItem, DockIcon, DockLabel } from "@/components/ui/dock";
-import { Home, FolderOpenDot, Activity, Book, Mail, Sun, Moon, Monitor } from "lucide-react";
+import { Dock, DockItem, DockIcon, DockLabel } from '@/components/ui/dock'
+import {
+  Home,
+  FolderOpenDot,
+  Activity,
+  Book,
+  Mail,
+  Sun,
+  Moon,
+  Monitor,
+} from 'lucide-react'
 import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
@@ -51,12 +60,13 @@ const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId)
   if (element) {
     const offset = 80
-    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+    const elementPosition =
+      element.getBoundingClientRect().top + window.pageYOffset
     const offsetPosition = elementPosition - offset
 
     window.scrollTo({
       top: offsetPosition,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }
 }
@@ -194,30 +204,91 @@ function MagneticSocialLink({
 
 function ProgressiveBlurSlider() {
   return (
-    <div className="relative h-[350px] w-screen overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)', transform: 'rotate(-15deg)' }}>
+    <div
+      className="relative h-[350px] w-screen overflow-hidden"
+      style={{ marginLeft: 'calc(-50vw + 50%)', transform: 'rotate(-15deg)' }}
+    >
       <InfiniteSlider className="flex h-full w-full items-center">
-        {["Ö", "M", "E", "R", "T", "A", "Ş", "K", "A", "Y", "A", "Ö", "M", "E", "R", "T", "A", "Ş", "K", "A", "Y", "A"].map((letter, index) => (
-          <div key={`${letter}-${index}`} className="w-16 text-center text-4xl font-[450] text-black dark:text-white">
+        {[
+          'Ö',
+          'M',
+          'E',
+          'R',
+          'T',
+          'A',
+          'Ş',
+          'K',
+          'A',
+          'Y',
+          'A',
+          'Ö',
+          'M',
+          'E',
+          'R',
+          'T',
+          'A',
+          'Ş',
+          'K',
+          'A',
+          'Y',
+          'A',
+        ].map((letter, index) => (
+          <div
+            key={`${letter}-${index}`}
+            className="w-16 text-center text-4xl font-[450] text-black dark:text-white"
+          >
             {letter}
           </div>
         ))}
       </InfiniteSlider>
     </div>
-  );
+  )
 }
 
 function ProgressiveBlurSliderClockwise() {
   return (
-    <div className="relative h-[350px] w-screen overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)', transform: 'rotate(15deg)' }}>
-      <InfiniteSlider className="flex h-full w-full items-center" reverse={true}>
-        {["Ö", "M", "E", "R", "T", "A", "Ş", "K", "A", "Y", "A", "Ö", "M", "E", "R", "T", "A", "Ş", "K", "A", "Y", "A"].map((letter, index) => (
-          <div key={`${letter}-${index}`} className="w-16 text-center text-4xl font-[450] text-black dark:text-white">
+    <div
+      className="relative h-[350px] w-screen overflow-hidden"
+      style={{ marginLeft: 'calc(-50vw + 50%)', transform: 'rotate(15deg)' }}
+    >
+      <InfiniteSlider
+        className="flex h-full w-full items-center"
+        reverse={true}
+      >
+        {[
+          'Ö',
+          'M',
+          'E',
+          'R',
+          'T',
+          'A',
+          'Ş',
+          'K',
+          'A',
+          'Y',
+          'A',
+          'Ö',
+          'M',
+          'E',
+          'R',
+          'T',
+          'A',
+          'Ş',
+          'K',
+          'A',
+          'Y',
+          'A',
+        ].map((letter, index) => (
+          <div
+            key={`${letter}-${index}`}
+            className="w-16 text-center text-4xl font-[450] text-black dark:text-white"
+          >
             {letter}
           </div>
         ))}
       </InfiniteSlider>
     </div>
-  );
+  )
 }
 
 export default function Personal() {
@@ -279,7 +350,6 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-
         <Gallery />
       </motion.section>
 
@@ -295,7 +365,10 @@ export default function Personal() {
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
                 {project.video && <ProjectVideo src={project.video} />}
                 {project.embedUrl && project.image && (
-                  <ProjectEmbed src={project.embedUrl} imageSrc={project.image} />
+                  <ProjectEmbed
+                    src={project.embedUrl}
+                    imageSrc={project.image}
+                  />
                 )}
               </div>
               <div className="px-1">
@@ -305,7 +378,7 @@ export default function Personal() {
                   target="_blank"
                 >
                   {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
                 </a>
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {project.description}
@@ -328,7 +401,10 @@ export default function Personal() {
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
                 {project.video && <ProjectVideo src={project.video} />}
                 {project.embedUrl && project.image && (
-                  <ProjectEmbed src={project.embedUrl} imageSrc={project.image} />
+                  <ProjectEmbed
+                    src={project.embedUrl}
+                    imageSrc={project.image}
+                  />
                 )}
                 {!project.video && !project.embedUrl && project.image && (
                   <img
@@ -345,7 +421,7 @@ export default function Personal() {
                   target="_blank"
                 >
                   {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
                 </a>
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {project.description}
@@ -462,7 +538,7 @@ export default function Personal() {
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
-        className="relative -mb-24 mt-32 w-full pointer-events-none"
+        className="pointer-events-none relative mt-32 -mb-24 w-full"
         aria-hidden="true"
       >
         <div className="relative">
@@ -474,41 +550,51 @@ export default function Personal() {
       </motion.section>
 
       {/* Dock — fixed at bottom center */}
-      <div className="fixed bottom-18 left-1/2 -translate-x-1/2 z-50">
+      <div className="fixed bottom-18 left-1/2 z-50 -translate-x-1/2">
         <Dock magnification={80} distance={150} panelHeight={64}>
           <DockItem onClick={cycleTheme}>
             <DockIcon>{getThemeIcon()}</DockIcon>
             <DockLabel>{getThemeLabel()}</DockLabel>
           </DockItem>
 
-          <DockItem onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            <DockIcon><Home className="h-6 w-6 text-zinc-200" /></DockIcon>
+          <DockItem
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
+            <DockIcon>
+              <Home className="h-6 w-6 text-zinc-200" />
+            </DockIcon>
             <DockLabel>Home</DockLabel>
           </DockItem>
 
           <DockItem onClick={() => scrollToSection('projects')}>
-            <DockIcon><FolderOpenDot className="h-6 w-6 text-zinc-200" /></DockIcon>
+            <DockIcon>
+              <FolderOpenDot className="h-6 w-6 text-zinc-200" />
+            </DockIcon>
             <DockLabel>Projects</DockLabel>
           </DockItem>
 
           <DockItem onClick={() => scrollToSection('data')}>
-            <DockIcon><Activity className="h-6 w-6 text-zinc-200" /></DockIcon>
+            <DockIcon>
+              <Activity className="h-6 w-6 text-zinc-200" />
+            </DockIcon>
             <DockLabel>Data</DockLabel>
           </DockItem>
 
           <DockItem onClick={() => scrollToSection('education')}>
-            <DockIcon><Book className="h-6 w-6 text-zinc-200" /></DockIcon>
+            <DockIcon>
+              <Book className="h-6 w-6 text-zinc-200" />
+            </DockIcon>
             <DockLabel>Education</DockLabel>
           </DockItem>
 
           <DockItem onClick={() => scrollToSection('contact')}>
-            <DockIcon><Mail className="h-6 w-6 text-zinc-200" /></DockIcon>
+            <DockIcon>
+              <Mail className="h-6 w-6 text-zinc-200" />
+            </DockIcon>
             <DockLabel>Contact</DockLabel>
           </DockItem>
         </Dock>
       </div>
-
-
     </motion.main>
   )
 }

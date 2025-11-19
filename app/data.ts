@@ -43,8 +43,7 @@ type SocialLink = {
 export const PROJECTS: Project[] = [
   {
     name: 'EcoIstanbul',
-    description:
-      'Sustainable commutes in Istanbul, made easy.',
+    description: 'Sustainable commutes in Istanbul, made easy.',
     link: 'https://otaskaya.me/',
     video:
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
@@ -52,7 +51,8 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Pigmenta',
-    description: 'AI powered painting systems for shipyards: reliable, efficient, military-grade',
+    description:
+      'AI powered painting systems for shipyards: reliable, efficient, military-grade',
     link: 'https://otaskaya.me/',
     video:
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
@@ -63,7 +63,7 @@ export const PROJECTS: Project[] = [
 export const DATA_PROJECTS: DataProject[] = [
   {
     name: 'Been',
-    description: 'All the places I\'ve been around the world.',
+    description: "All the places I've been around the world.",
     link: 'https://beeneverywhere.net/',
     image: '/TCC.jpg',
     embedUrl: 'https://beeneverywhere.net/user/otaskaya',
@@ -71,7 +71,7 @@ export const DATA_PROJECTS: DataProject[] = [
   },
   {
     name: 'Last.fm',
-    description: 'What I\'ve listened to every day for the past 4 years.',
+    description: "What I've listened to every day for the past 4 years.",
     link: '#',
     image: '/lastfm_logo.png',
     embedUrl: 'https://lastfmstats.com/user/otaskaya/charts',
@@ -82,7 +82,8 @@ export const DATA_PROJECTS: DataProject[] = [
     description: 'Books, books, books.',
     link: 'https://www.goodreads.com/user/show/135046786-stoneon',
     image: '/goodreads_logo.png',
-    embedUrl: 'https://www.goodreads.com/review/list/135046786-stoneon?page=1&per_page=10&shelf=read&utf8=%E2%9C%93&view=table',
+    embedUrl:
+      'https://www.goodreads.com/review/list/135046786-stoneon?page=1&per_page=10&shelf=read&utf8=%E2%9C%93&view=table',
     id: 'data3',
   },
   {
@@ -90,7 +91,8 @@ export const DATA_PROJECTS: DataProject[] = [
     description: 'My top shows',
     link: 'https://www.imdb.com/user/ur143130788/ratings/?sort=top_rated%2Cdesc&view=detailed',
     image: '/imdb_logo.png',
-    embedUrl: 'https://www.imdb.com/user/ur143130788/ratings/?sort=top_rated%2Cdesc&view=detailed',
+    embedUrl:
+      'https://www.imdb.com/user/ur143130788/ratings/?sort=top_rated%2Cdesc&view=detailed',
     id: 'data4',
   },
 ]
@@ -148,7 +150,8 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     title: 'How to Export Metadata from MDX for Next.js SEO',
-    description: 'A guide on exporting metadata from MDX files to leverage Next.js SEO features.',
+    description:
+      'A guide on exporting metadata from MDX files to leverage Next.js SEO features.',
     link: '/blog/example-mdx-metadata',
     uid: 'blog-4',
   },
@@ -172,7 +175,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'LinkedIn',
     link: 'https://www.linkedin.com/in/otaskaya',
   },
-
 ]
 
 export const EMAIL = 'omertaskaya@gmail.com'

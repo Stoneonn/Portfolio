@@ -5,6 +5,7 @@ This directory contains the images for the Gallery / About Me section.
 ## How to Add Your Images
 
 1. Add your photos to this directory with the following names:
+
    - `image1.jpg` - Professional speaking event or similar
    - `image2.jpg` - Apple Park visit or tech-related photo
    - `image3.jpg` - Desert adventure or outdoor activity
@@ -17,6 +18,7 @@ This directory contains the images for the Gallery / About Me section.
 2. Supported formats: `.jpg`, `.jpeg`, `.png`
 
 3. Recommended image sizes:
+
    - Minimum width: 800px
    - Optimal width: 1200-1600px
    - Images will be automatically optimized by Next.js
@@ -29,6 +31,7 @@ This directory contains the images for the Gallery / About Me section.
 ## Customizing the Gallery
 
 To add more images or change the layout, edit:
+
 - `/components/ui/gallery-section.tsx`
 
 Update the `GALLERY_IMAGES` array with your image details.

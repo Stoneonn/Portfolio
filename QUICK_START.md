@@ -11,6 +11,7 @@ Two new sections have been added to your portfolio. Here's what you need to do t
 The "Data" section is now live on your portfolio, located between Projects and Education.
 
 **Current Status:**
+
 - ✅ "been" project moved from Projects to Data
 - ⚠️ 3 placeholder projects need your attention
 
@@ -22,37 +23,38 @@ Edit `/app/data.ts` and update these placeholder projects:
 export const DATA_PROJECTS: DataProject[] = [
   {
     name: 'been',
-    description: 'Explore places I\'ve been around the world.',
+    description: "Explore places I've been around the world.",
     link: 'https://beeneverywhere.net/',
     image: '/been-preview.svg',
     embedUrl: 'https://beeneverywhere.net/',
     id: 'data1',
   },
   {
-    name: 'Music Journey',  // 👈 UPDATE THIS
+    name: 'Music Journey', // 👈 UPDATE THIS
     description: 'My musical taste and listening habits over time.',
-    link: '#',  // 👈 Add your Last.fm or Spotify stats link
-    image: '/been-preview.svg',  // 👈 Add a preview image
+    link: '#', // 👈 Add your Last.fm or Spotify stats link
+    image: '/been-preview.svg', // 👈 Add a preview image
     id: 'data2',
   },
   {
-    name: 'Reading Stats',  // 👈 UPDATE THIS
-    description: 'Books I\'ve read and my reading patterns.',
-    link: '#',  // 👈 Add your Goodreads or reading tracker link
-    image: '/been-preview.svg',  // 👈 Add a preview image
+    name: 'Reading Stats', // 👈 UPDATE THIS
+    description: "Books I've read and my reading patterns.",
+    link: '#', // 👈 Add your Goodreads or reading tracker link
+    image: '/been-preview.svg', // 👈 Add a preview image
     id: 'data3',
   },
   {
-    name: 'Coding Activity',  // 👈 UPDATE THIS
+    name: 'Coding Activity', // 👈 UPDATE THIS
     description: 'My development journey and contributions.',
-    link: '#',  // 👈 Add your GitHub stats or coding tracker link
-    image: '/been-preview.svg',  // 👈 Add a preview image
+    link: '#', // 👈 Add your GitHub stats or coding tracker link
+    image: '/been-preview.svg', // 👈 Add a preview image
     id: 'data4',
   },
 ]
 ```
 
 **Options for Each Project:**
+
 - Add `video` property for video preview
 - Add `embedUrl` property to make it interactive (opens in modal)
 - Add `image` property for static preview
@@ -64,6 +66,7 @@ export const DATA_PROJECTS: DataProject[] = [
 The Gallery section is ready but needs your photos!
 
 **Current Status:**
+
 - ✅ Component created and integrated
 - ✅ Responsive grid layout working
 - ✅ Hover animations ready
@@ -72,12 +75,14 @@ The Gallery section is ready but needs your photos!
 **To Complete:**
 
 1. **Prepare 8 Photos:**
+
    - Professional moments (speaking, work)
    - Personal moments (travel, social)
    - Tech/hobby moments
    - Mix of orientations (portrait, landscape, square)
 
 2. **Add Photos to `/public/gallery/`:**
+
    ```
    /public/gallery/
    ├── image1.jpg  → Professional speaking event or similar
@@ -91,6 +96,7 @@ The Gallery section is ready but needs your photos!
    ```
 
 3. **Image Guidelines:**
+
    - Minimum width: 800px
    - Optimal width: 1200-1600px
    - Formats: .jpg, .jpeg, or .png
@@ -102,7 +108,7 @@ The Gallery section is ready but needs your photos!
    const GALLERY_IMAGES: GalleryImage[] = [
      {
        src: '/gallery/image1.jpg',
-       alt: 'Your custom description',  // 👈 Update this
+       alt: 'Your custom description', // 👈 Update this
        aspectRatio: 'landscape',
      },
      // ...
@@ -114,10 +120,13 @@ The Gallery section is ready but needs your photos!
 ## 🎨 Customization Options
 
 ### Change Number of Images
+
 Edit `GALLERY_IMAGES` array in `/components/ui/gallery-section.tsx` - add or remove entries.
 
 ### Adjust Grid Layout
+
 In `/components/ui/gallery-section.tsx`, line 101:
+
 ```typescript
 // Current: 2 cols mobile, 3 tablet, 4 desktop, 5 xl
 <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
@@ -127,7 +136,9 @@ In `/components/ui/gallery-section.tsx`, line 101:
 ```
 
 ### Change Aspect Ratios
+
 In the `GALLERY_IMAGES` array, set:
+
 - `'portrait'` - spans 2 rows (tall)
 - `'landscape'` - spans 2 columns (wide)
 - `'square'` - single cell
@@ -137,6 +148,7 @@ In the `GALLERY_IMAGES` array, set:
 ## 🚀 Testing Your Changes
 
 1. **Start Development Server:**
+
    ```bash
    npm run dev
    ```

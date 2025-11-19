@@ -21,11 +21,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://nim-fawn.vercel.app/'),
   alternates: {
-    canonical: '/'
+    canonical: '/',
   },
   title: {
     default: 'otaskaya, это я',
-    template: '%s | Nim'
+    template: '%s | Nim',
   },
   description: 'Me as a website',
   icons: {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
     apple: '/favicon.ico',
   },
-};
+}
 
 const geist = Geist({
   variable: '--font-geist',
