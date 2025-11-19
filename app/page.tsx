@@ -26,6 +26,7 @@ import {
   MorphingDialogContainer,
 } from '@/components/ui/morphing-dialog'
 import Link from 'next/link'
+import Image from 'next/image'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import {
   PROJECTS,
@@ -136,11 +137,14 @@ function ProjectEmbed({ src, imageSrc }: ProjectEmbedProps) {
       }}
     >
       <MorphingDialogTrigger>
-        <img
-          src={imageSrc}
-          alt="Project preview"
-          className="aspect-video w-full cursor-pointer rounded-xl object-cover"
-        />
+        <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-xl">
+          <Image
+            src={imageSrc}
+            alt="Project preview"
+            fill
+            className="object-cover"
+          />
+        </div>
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
         <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
@@ -407,11 +411,14 @@ export default function Personal() {
                   />
                 )}
                 {!project.video && !project.embedUrl && project.image && (
-                  <img
-                    src={project.image}
-                    alt={project.name}
-                    className="aspect-video w-full rounded-xl object-cover"
-                  />
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 )}
               </div>
               <div className="px-1">
@@ -453,9 +460,11 @@ export default function Personal() {
               />
               <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
                 <div className="relative flex w-full flex-row items-center gap-4">
-                  <img
+                  <Image
                     src={edu.logo}
                     alt={`${edu.school} logo`}
+                    width={48}
+                    height={48}
                     className="h-12 w-12 rounded-lg object-contain"
                   />
                   <div className="flex flex-1 flex-row justify-between">

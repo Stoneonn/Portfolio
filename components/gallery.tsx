@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
+import Image from 'next/image'
 
 const images = [
   {
@@ -44,10 +45,11 @@ export function Gallery() {
                 transition={{ delay: index * 0.1 }}
                 className="relative aspect-[1.2/1] overflow-hidden bg-zinc-100 dark:bg-zinc-800"
               >
-                <img
+                <Image
                   src={image.src}
                   alt={image.alt}
-                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-500 hover:scale-105"
                 />
               </motion.div>
             ))}
@@ -61,10 +63,11 @@ export function Gallery() {
                 transition={{ delay: (index + 3) * 0.1 }}
                 className="relative aspect-[1.6/1] overflow-hidden bg-zinc-100 dark:bg-zinc-800"
               >
-                <img
+                <Image
                   src={image.src}
                   alt={image.alt}
-                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-500 hover:scale-105"
                 />
               </motion.div>
             ))}

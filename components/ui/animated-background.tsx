@@ -11,9 +11,8 @@ import {
 } from 'react'
 
 export type AnimatedBackgroundProps = {
-  children:
-  | ReactElement<{ 'data-id': string }>[]
-  | ReactElement<{ 'data-id': string }>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children: ReactElement<any>[] | ReactElement<any>
   defaultValue?: string
   onValueChange?: (newActiveId: string | null) => void
   className?: string
@@ -46,17 +45,18 @@ export function AnimatedBackground({
     }
   }, [defaultValue])
 
-  return Children.map(children, (child: ReactElement<{ 'data-id': string }>, index) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return Children.map(children, (child: ReactElement<any>, index) => {
     const id = child.props['data-id']
 
     const interactionProps = enableHover
       ? {
-        onMouseEnter: () => handleSetActiveId(id),
-        onMouseLeave: () => handleSetActiveId(null),
-      }
+          onMouseEnter: () => handleSetActiveId(id),
+          onMouseLeave: () => handleSetActiveId(null),
+        }
       : {
-        onClick: () => handleSetActiveId(id),
-      }
+          onClick: () => handleSetActiveId(id),
+        }
 
     return cloneElement(
       child,

@@ -170,7 +170,8 @@ function DockItem({ children, className, onClick }: DockItemProps) {
       onClick={onClick}
     >
       {Children.map(children, (child) =>
-        cloneElement(child as React.ReactElement, { width, isHovered }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        cloneElement(child as React.ReactElement<any>, { width, isHovered }),
       )}
     </motion.div>
   )
