@@ -73,7 +73,7 @@ export const DATA_PROJECTS: DataProject[] = [
   {
     name: 'Last.fm',
     description: "What I've listened to every day for the past 4 years.",
-    link: '#',
+    link: 'https://www.last.fm/user/otaskaya',
     image: '/lastfm_logo.png',
     embedUrl: 'https://lastfmstats.com/user/otaskaya/charts',
     id: 'lastfm',

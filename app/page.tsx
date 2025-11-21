@@ -233,7 +233,7 @@ function ProgressiveBlurSlider() {
         ].map((letter, index) => (
           <div
             key={`${letter}-${index}`}
-            className="w-16 text-center text-4xl font-[450] text-black dark:text-white"
+            className="w-16 select-none text-center text-4xl font-[450] text-black dark:text-white"
           >
             {letter}
           </div>
@@ -279,7 +279,7 @@ function ProgressiveBlurSliderClockwise() {
         ].map((letter, index) => (
           <div
             key={`${letter}-${index}`}
-            className="w-16 text-center text-4xl font-[450] text-black dark:text-white"
+            className="w-16 select-none text-center text-4xl font-[450] text-black dark:text-white"
           >
             {letter}
           </div>
