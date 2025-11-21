@@ -416,6 +416,16 @@ export default function Personal() {
                     />
                   </ProjectEmbed>
                 )}
+                {!project.video && !project.embedUrl && project.image && (
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
               </div>
               <div className="px-1">
                 <a
@@ -449,79 +459,93 @@ export default function Personal() {
               >
                 {project.video && <ProjectVideo src={project.video} />}
                 {project.embedUrl && (
-                  <ProjectEmbed src={project.embedUrl}>
-                    <div className="relative aspect-video w-full overflow-hidden rounded-xl">
-                      {/* Custom branding mocks based on ID */}
-                      {project.id === 'been' && (
-                        <div className="flex h-full w-full items-center justify-center text-white">
-                          <div className="group flex items-center gap-3 transition-transform duration-500 hover:scale-110">
-                            {/* Simple White Flag Icon */}
-                            <svg
-                              width="56"
-                              height="56"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="-rotate-6 stroke-current"
-                            >
-                              <path
-                                d="M4 15C4 15 5 14 8 14C11 14 13 16 16 16C19 16 20 15 20 15V3C20 3 19 4 16 4C13 4 11 2 8 2C5 2 4 3 4 3V22"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-
-                            {/* White Text Part */}
-                            <div className="flex flex-col">
-                              <h3 className="mb-1 font-sans text-5xl leading-none font-bold tracking-tight italic">
-                                BEEN
+                  <>
+                    {/* For IMDB and Goodreads, open in new tab instead of embedding */}
+                    {project.id === 'goodreads' || project.id === 'imdb' ? (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative aspect-video w-full overflow-hidden rounded-xl"
+                      >
+                        <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                          {project.id === 'goodreads' && (
+                            <div className="flex h-full w-full items-center justify-center text-[#382110]">
+                              <h3 className="group flex items-center gap-2 font-serif text-4xl font-bold transition-transform duration-300 hover:scale-110">
+                                goodreads
                               </h3>
-                              <div className="mb-1 h-1 w-full rounded-full bg-white/90"></div>
-                              <div className="h-1 w-full rounded-full bg-white/90"></div>
                             </div>
-                          </div>
-                        </div>
-                      )}
+                          )}
 
-                      {project.id === 'lastfm' && (
-                        <div className="flex h-full w-full items-center justify-center">
-                          <h3 className="group flex items-center gap-2 text-5xl font-bold tracking-tighter text-white transition-transform duration-300 hover:scale-110">
-                            <Music className="h-10 w-10" /> last.fm
-                          </h3>
+                          {project.id === 'imdb' && (
+                            <div className="flex h-full w-full items-center justify-center">
+                              <div className="group rounded-md bg-black px-4 py-1 text-5xl font-black text-[#F5C518] transition-transform duration-300 hover:scale-110">
+                                IMDb
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      )}
+                      </a>
+                    ) : (
+                      <ProjectEmbed src={project.embedUrl}>
+                        <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                          {/* Custom branding mocks based on ID */}
+                          {project.id === 'been' && (
+                            <div className="flex h-full w-full items-center justify-center text-white">
+                              <div className="group flex items-center gap-3 transition-transform duration-500 hover:scale-110">
+                                {/* Simple White Flag Icon */}
+                                <svg
+                                  width="56"
+                                  height="56"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="-rotate-6 stroke-current"
+                                >
+                                  <path
+                                    d="M4 15C4 15 5 14 8 14C11 14 13 16 16 16C19 16 20 15 20 15V3C20 3 19 4 16 4C13 4 11 2 8 2C5 2 4 3 4 3V22"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
 
-                      {project.id === 'goodreads' && (
-                        <div className="flex h-full w-full items-center justify-center text-[#382110]">
-                          <h3 className="group flex items-center gap-2 font-serif text-4xl font-bold transition-transform duration-300 hover:scale-110">
-                            goodreads
-                          </h3>
+                                {/* White Text Part */}
+                                <div className="flex flex-col">
+                                  <h3 className="mb-1 font-sans text-5xl leading-none font-bold tracking-tight italic">
+                                    BEEN
+                                  </h3>
+                                  <div className="mb-1 h-1 w-full rounded-full bg-white/90"></div>
+                                  <div className="h-1 w-full rounded-full bg-white/90"></div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {project.id === 'lastfm' && (
+                            <div className="flex h-full w-full items-center justify-center">
+                              <h3 className="group flex items-center gap-2 text-5xl font-bold tracking-tighter text-white transition-transform duration-300 hover:scale-110">
+                                <Music className="h-10 w-10" /> last.fm
+                              </h3>
+                            </div>
+                          )}
+
+                          {/* Fallback for other projects if any */}
+                          {project.image &&
+                            !['been', 'lastfm', 'goodreads', 'imdb'].includes(
+                              project.id,
+                            ) && (
+                              <Image
+                                src={project.image}
+                                alt={project.name}
+                                fill
+                                className="object-cover"
+                              />
+                            )}
                         </div>
-                      )}
-
-                      {project.id === 'imdb' && (
-                        <div className="flex h-full w-full items-center justify-center">
-                          <div className="group rounded-md bg-black px-4 py-1 text-5xl font-black text-[#F5C518] transition-transform duration-300 hover:scale-110">
-                            IMDb
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Fallback for other projects if any */}
-                      {project.image &&
-                        !['been', 'lastfm', 'goodreads', 'imdb'].includes(
-                          project.id,
-                        ) && (
-                          <Image
-                            src={project.image}
-                            alt={project.name}
-                            fill
-                            className="object-cover"
-                          />
-                        )}
-                    </div>
-                  </ProjectEmbed>
+                      </ProjectEmbed>
+                    )}
+                  </>
                 )}
                 {!project.video && !project.embedUrl && (
                   <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
