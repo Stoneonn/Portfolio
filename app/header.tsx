@@ -1,5 +1,4 @@
 'use client'
-import { TextEffect } from '@/components/ui/text-effect'
 import Link from 'next/link'
 
 export function Header() {
@@ -12,16 +11,10 @@ export function Header() {
         >
           Ömer Taşkaya
         </Link>
-        <TextEffect
-          as="p"
-          preset="fade"
-          per="char"
-          className="max-w-md text-zinc-600 dark:text-zinc-500"
-          delay={0.5}
-        >
+        <p className="max-w-md text-zinc-600 dark:text-zinc-500">
           Hey, welcome. I&apos;m Ömer, someone who aspire to be a lot of things,
           you&apos;ll see.
-        </TextEffect>
+        </p>
       </div>
     </header>
   )

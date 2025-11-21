@@ -16,6 +16,7 @@ type DataProject = {
   image?: string
   embedUrl?: string
   id: string
+  color?: string
 }
 
 type Education = {
@@ -28,11 +29,12 @@ type Education = {
   id: string
 }
 
-type BlogPost = {
-  title: string
-  description: string
-  link: string
-  uid: string
+type ReadingCategory = {
+  category: string
+  items: {
+    title: string
+    link: string
+  }[]
 }
 
 type SocialLink = {
@@ -67,7 +69,8 @@ export const DATA_PROJECTS: DataProject[] = [
     link: 'https://beeneverywhere.net/',
     image: '/TCC.jpg',
     embedUrl: 'https://beeneverywhere.net/user/otaskaya',
-    id: 'data1',
+    id: 'been',
+    color: 'bg-[#FF385C]',
   },
   {
     name: 'Last.fm',
@@ -75,7 +78,8 @@ export const DATA_PROJECTS: DataProject[] = [
     link: '#',
     image: '/lastfm_logo.png',
     embedUrl: 'https://lastfmstats.com/user/otaskaya/charts',
-    id: 'data2',
+    id: 'lastfm',
+    color: 'bg-[#B90000]',
   },
   {
     name: 'Goodreads',
@@ -84,7 +88,8 @@ export const DATA_PROJECTS: DataProject[] = [
     image: '/goodreads_logo.png',
     embedUrl:
       'https://www.goodreads.com/review/list/135046786-stoneon?page=1&per_page=10&shelf=read&utf8=%E2%9C%93&view=table',
-    id: 'data3',
+    id: 'goodreads',
+    color: 'bg-[#F4F1EA]',
   },
   {
     name: 'IMDB',
@@ -93,7 +98,8 @@ export const DATA_PROJECTS: DataProject[] = [
     image: '/imdb_logo.png',
     embedUrl:
       'https://www.imdb.com/user/ur143130788/ratings/?sort=top_rated%2Cdesc&view=detailed',
-    id: 'data4',
+    id: 'imdb',
+    color: 'bg-[#F5C518]',
   },
 ]
 
@@ -127,33 +133,56 @@ export const EDUCATION: Education[] = [
   },
 ]
 
-export const BLOG_POSTS: BlogPost[] = [
+export const READING_LIST: ReadingCategory[] = [
   {
-    title: 'Exploring the Intersection of Design, AI, and Design Engineering',
-    description: 'How AI is changing the way we design',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-1',
+    category: 'World News',
+    items: [
+      { title: 'Reuters', link: 'https://www.reuters.com/' },
+      { title: 'FT', link: 'https://www.ft.com/' },
+    ],
   },
   {
-    title: 'Why I left my job to start my own company',
-    description:
-      'A deep dive into my decision to leave my job and start my own company',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-2',
+    category: 'Specialized Reports',
+    items: [
+      { title: 'BOFIT Blog', link: 'https://www.bofit.fi/en/publications/bofit-blog/' },
+      { title: 'BBVA Research', link: 'https://www.bbvamarketstrategy.com/tag/turkey/' },
+      {
+        title: 'Journal of Social and Personal Relationships',
+        link: 'https://journals.sagepub.com/home/spr',
+      },
+    ],
   },
   {
-    title: 'What I learned from my first year of freelancing',
-    description:
-      'A look back at my first year of freelancing and what I learned',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-3',
+    category: 'Opinion',
+    items: [
+      { title: 'Project Syndicate', link: 'https://www.project-syndicate.org/' },
+      { title: 'The Economist', link: 'https://www.economist.com/' },
+      { title: 'Jacobin', link: 'https://jacobin.com/' },
+    ],
   },
   {
-    title: 'How to Export Metadata from MDX for Next.js SEO',
-    description:
-      'A guide on exporting metadata from MDX files to leverage Next.js SEO features.',
-    link: '/blog/example-mdx-metadata',
-    uid: 'blog-4',
+    category: 'Turkish News',
+    items: [
+      { title: 'Ekonomi Gazetesi', link: 'https://www.ekonomigazetesi.com/' },
+      { title: 'Aposto', link: 'https://aposto.com/n/daily?tab=issue' },
+    ],
+  },
+  {
+    category: 'Russian News',
+    items: [
+      { title: 'Novaya Gazeta', link: 'https://novayagazeta.eu/' },
+      { title: 'The Moscow Times', link: 'https://www.themoscowtimes.com/' },
+      { title: 'The Bell', link: 'https://thebell.io/' },
+      { title: 'Interfax', link: 'https://www.interfax.ru/' },
+      { title: 'Mediazona', link: 'https://zona.media/' },
+    ],
+  },
+  {
+    category: 'Culture',
+    items: [
+      { title: 'The New Yorker', link: 'https://www.newyorker.com/' },
+      { title: 'ArchDaily', link: 'https://www.archdaily.com/' },
+    ],
   },
 ]
 

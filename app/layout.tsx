@@ -12,6 +12,12 @@ const canela = localFont({
   weight: '500',
 })
 
+const canelaRegularItalic = localFont({
+  src: './fonts/CanelaDeck-RegularItalic-Trial.otf',
+  variable: '--font-canela-italic',
+  weight: '400',
+})
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -53,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} ${canela.variable} bg-[#FAFAFA] tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${geist.variable} ${geistMono.variable} ${canela.variable} ${canelaRegularItalic.variable} bg-[#FAFAFA] tracking-tight antialiased dark:bg-zinc-950`}
       >
         <ThemeProvider
           enableSystem={true}

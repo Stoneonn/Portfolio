@@ -12,8 +12,9 @@ import {
   Sun,
   Moon,
   Monitor,
+  Music,
+  X,
 } from 'lucide-react'
-import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
 import { useTheme } from 'next-themes'
@@ -25,27 +26,25 @@ import {
   MorphingDialogClose,
   MorphingDialogContainer,
 } from '@/components/ui/morphing-dialog'
-import Link from 'next/link'
 import Image from 'next/image'
-import { AnimatedBackground } from '@/components/ui/animated-background'
 import {
   PROJECTS,
   DATA_PROJECTS,
   EDUCATION,
-  BLOG_POSTS,
+  READING_LIST,
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
 
-const VARIANTS_CONTAINER = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-}
+// const VARIANTS_CONTAINER = {
+//   hidden: { opacity: 0 },
+//   visible: {
+//     opacity: 1,
+//     transition: {
+//       staggerChildren: 0.15,
+//     },
+//   },
+// }
 
 const VARIANTS_SECTION = {
   hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
@@ -115,7 +114,7 @@ function ProjectVideo({ src }: ProjectVideoProps) {
             exit: { opacity: 0, transition: { duration: 0 } },
           }}
         >
-          <XIcon className="h-5 w-5 text-zinc-500" />
+          <X className="h-5 w-5 text-zinc-500" />
         </MorphingDialogClose>
       </MorphingDialogContainer>
     </MorphingDialog>
@@ -124,10 +123,10 @@ function ProjectVideo({ src }: ProjectVideoProps) {
 
 type ProjectEmbedProps = {
   src: string
-  imageSrc: string
+  children: React.ReactNode
 }
 
-function ProjectEmbed({ src, imageSrc }: ProjectEmbedProps) {
+function ProjectEmbed({ src, children }: ProjectEmbedProps) {
   return (
     <MorphingDialog
       transition={{
@@ -138,12 +137,7 @@ function ProjectEmbed({ src, imageSrc }: ProjectEmbedProps) {
     >
       <MorphingDialogTrigger>
         <div className="relative aspect-video w-full cursor-pointer overflow-hidden rounded-xl">
-          <Image
-            src={imageSrc}
-            alt="Project preview"
-            fill
-            className="object-cover"
-          />
+          {children}
         </div>
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
@@ -165,7 +159,7 @@ function ProjectEmbed({ src, imageSrc }: ProjectEmbedProps) {
             exit: { opacity: 0, transition: { duration: 0 } },
           }}
         >
-          <XIcon className="h-5 w-5 text-zinc-500" />
+          <X className="h-5 w-5 text-zinc-500" />
         </MorphingDialogClose>
       </MorphingDialogContainer>
     </MorphingDialog>
@@ -313,17 +307,18 @@ export default function Personal() {
   }
 
   const getThemeIcon = () => {
-    if (!mounted) return <Sun className="h-6 w-6 text-zinc-200" />
+    if (!mounted)
+      return <Sun className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
 
     switch (theme) {
       case 'light':
-        return <Sun className="h-6 w-6 text-zinc-200" />
+        return <Sun className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
       case 'dark':
-        return <Moon className="h-6 w-6 text-zinc-200" />
+        return <Moon className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
       case 'system':
-        return <Monitor className="h-6 w-6 text-zinc-200" />
+        return <Monitor className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
       default:
-        return <Sun className="h-6 w-6 text-zinc-200" />
+        return <Sun className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
     }
   }
 
@@ -343,100 +338,13 @@ export default function Personal() {
   }
 
   return (
-    <motion.main
-      className="space-y-24"
-      variants={VARIANTS_CONTAINER}
-      initial="hidden"
-      animate="visible"
-    >
+    <motion.main className="space-y-24">
       <motion.section
         id="home"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
         <Gallery />
-      </motion.section>
-
-      <motion.section
-        id="projects"
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-lg font-medium">Projects</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {PROJECTS.map((project) => (
-            <div key={project.name} className="space-y-2">
-              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                {project.video && <ProjectVideo src={project.video} />}
-                {project.embedUrl && project.image && (
-                  <ProjectEmbed
-                    src={project.embedUrl}
-                    imageSrc={project.image}
-                  />
-                )}
-              </div>
-              <div className="px-1">
-                <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                  href={project.link}
-                  target="_blank"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
-                </a>
-                <p className="text-base text-zinc-600 dark:text-zinc-400">
-                  {project.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </motion.section>
-
-      <motion.section
-        id="data"
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-lg font-medium">Data</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {DATA_PROJECTS.map((project) => (
-            <div key={project.name} className="space-y-2">
-              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                {project.video && <ProjectVideo src={project.video} />}
-                {project.embedUrl && project.image && (
-                  <ProjectEmbed
-                    src={project.embedUrl}
-                    imageSrc={project.image}
-                  />
-                )}
-                {!project.video && !project.embedUrl && project.image && (
-                  <div className="relative aspect-video w-full overflow-hidden rounded-xl">
-                    <Image
-                      src={project.image}
-                      alt={project.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-              </div>
-              <div className="px-1">
-                <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                  href={project.link}
-                  target="_blank"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
-                </a>
-                <p className="text-base text-zinc-600 dark:text-zinc-400">
-                  {project.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
       </motion.section>
 
       <motion.section
@@ -488,38 +396,195 @@ export default function Personal() {
       </motion.section>
 
       <motion.section
+        id="projects"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-3 text-lg font-medium">Blog</h3>
-        <div className="flex flex-col space-y-0">
-          <AnimatedBackground
-            enableHover
-            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-            transition={{
-              type: 'spring',
-              bounce: 0,
-              duration: 0.2,
-            }}
-          >
-            {BLOG_POSTS.map((post) => (
-              <Link
-                key={post.uid}
-                className="-mx-3 rounded-xl px-3 py-3"
-                href={post.link}
-                data-id={post.uid}
+        <h3 className="mb-5 text-lg font-medium">Projects</h3>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {PROJECTS.map((project) => (
+            <div key={project.name} className="space-y-2">
+              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+                {project.video && <ProjectVideo src={project.video} />}
+                {project.embedUrl && project.image && (
+                  <ProjectEmbed src={project.embedUrl}>
+                    <Image
+                      src={project.image}
+                      alt="Project preview"
+                      fill
+                      className="object-cover"
+                    />
+                  </ProjectEmbed>
+                )}
+              </div>
+              <div className="px-1">
+                <a
+                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                  href={project.link}
+                  target="_blank"
+                >
+                  {project.name}
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
+                </a>
+                <p className="text-base text-zinc-600 dark:text-zinc-400">
+                  {project.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        id="data"
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Data</h3>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {DATA_PROJECTS.map((project) => (
+            <div key={project.name} className="space-y-2">
+              <div
+                className={`relative rounded-2xl p-1 ring-1 ring-zinc-200/50 ring-inset dark:ring-zinc-800/50 ${project.color ? project.color : 'bg-zinc-50/40 dark:bg-zinc-950/40'}`}
               >
-                <div className="flex flex-col space-y-1">
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {post.title}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    {post.description}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </AnimatedBackground>
+                {project.video && <ProjectVideo src={project.video} />}
+                {project.embedUrl && (
+                  <ProjectEmbed src={project.embedUrl}>
+                    <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                      {/* Custom branding mocks based on ID */}
+                      {project.id === 'been' && (
+                        <div className="flex h-full w-full items-center justify-center text-white">
+                          <div className="group flex items-center gap-3 transition-transform duration-500 hover:scale-110">
+                            {/* Simple White Flag Icon */}
+                            <svg
+                              width="56"
+                              height="56"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="-rotate-6 stroke-current"
+                            >
+                              <path
+                                d="M4 15C4 15 5 14 8 14C11 14 13 16 16 16C19 16 20 15 20 15V3C20 3 19 4 16 4C13 4 11 2 8 2C5 2 4 3 4 3V22"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+
+                            {/* White Text Part */}
+                            <div className="flex flex-col">
+                              <h3 className="mb-1 font-sans text-5xl leading-none font-bold tracking-tight italic">
+                                BEEN
+                              </h3>
+                              <div className="mb-1 h-1 w-full rounded-full bg-white/90"></div>
+                              <div className="h-1 w-full rounded-full bg-white/90"></div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {project.id === 'lastfm' && (
+                        <div className="flex h-full w-full items-center justify-center">
+                          <h3 className="group flex items-center gap-2 text-5xl font-bold tracking-tighter text-white transition-transform duration-300 hover:scale-110">
+                            <Music className="h-10 w-10" /> last.fm
+                          </h3>
+                        </div>
+                      )}
+
+                      {project.id === 'goodreads' && (
+                        <div className="flex h-full w-full items-center justify-center text-[#382110]">
+                          <h3 className="group flex items-center gap-2 font-serif text-4xl font-bold transition-transform duration-300 hover:scale-110">
+                            goodreads
+                          </h3>
+                        </div>
+                      )}
+
+                      {project.id === 'imdb' && (
+                        <div className="flex h-full w-full items-center justify-center">
+                          <div className="group rounded-md bg-black px-4 py-1 text-5xl font-black text-[#F5C518] transition-transform duration-300 hover:scale-110">
+                            IMDb
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Fallback for other projects if any */}
+                      {project.image &&
+                        !['been', 'lastfm', 'goodreads', 'imdb'].includes(
+                          project.id,
+                        ) && (
+                          <Image
+                            src={project.image}
+                            alt={project.name}
+                            fill
+                            className="object-cover"
+                          />
+                        )}
+                    </div>
+                  </ProjectEmbed>
+                )}
+                {!project.video && !project.embedUrl && (
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
+                    <Image
+                      src={project.image || ''}
+                      alt={project.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+              </div>
+              <div className="px-1">
+                <a
+                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                  href={project.link}
+                  target="_blank"
+                >
+                  {project.name}
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
+                </a>
+                <p className="text-base text-zinc-600 dark:text-zinc-400">
+                  {project.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">My Selection of Periodical Readings</h3>
+        <div className="columns-1 gap-8 sm:columns-2 md:columns-3">
+          {READING_LIST.map((category) => (
+            <div
+              key={category.category}
+              className="mb-8 break-inside-avoid-column rounded-xl border border-zinc-200/50 bg-zinc-50/50 p-6 transition-all duration-300 hover:border-zinc-300 hover:bg-zinc-50 hover:shadow-sm dark:border-zinc-800/50 dark:bg-zinc-900/20 dark:hover:border-zinc-700 dark:hover:bg-zinc-900"
+            >
+              <h4 className="mb-4 font-[family-name:var(--font-canela-italic)] text-xl text-zinc-900 dark:text-zinc-100">
+                {category.category}
+              </h4>
+              <ul className="space-y-2">
+                {category.items.map((item) => (
+                  <li key={item.title}>
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-between text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
+                    >
+                      <span>{item.title}</span>
+                      <span className="opacity-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100">
+                        ↗
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </motion.section>
 
@@ -570,35 +635,35 @@ export default function Personal() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <DockIcon>
-              <Home className="h-6 w-6 text-zinc-200" />
+              <Home className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
             </DockIcon>
             <DockLabel>Home</DockLabel>
           </DockItem>
 
+          <DockItem onClick={() => scrollToSection('education')}>
+            <DockIcon>
+              <Book className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
+            </DockIcon>
+            <DockLabel>Education</DockLabel>
+          </DockItem>
+
           <DockItem onClick={() => scrollToSection('projects')}>
             <DockIcon>
-              <FolderOpenDot className="h-6 w-6 text-zinc-200" />
+              <FolderOpenDot className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
             </DockIcon>
             <DockLabel>Projects</DockLabel>
           </DockItem>
 
           <DockItem onClick={() => scrollToSection('data')}>
             <DockIcon>
-              <Activity className="h-6 w-6 text-zinc-200" />
+              <Activity className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
             </DockIcon>
             <DockLabel>Data</DockLabel>
           </DockItem>
 
-          <DockItem onClick={() => scrollToSection('education')}>
-            <DockIcon>
-              <Book className="h-6 w-6 text-zinc-200" />
-            </DockIcon>
-            <DockLabel>Education</DockLabel>
-          </DockItem>
-
           <DockItem onClick={() => scrollToSection('contact')}>
             <DockIcon>
-              <Mail className="h-6 w-6 text-zinc-200" />
+              <Mail className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
             </DockIcon>
             <DockLabel>Contact</DockLabel>
           </DockItem>
