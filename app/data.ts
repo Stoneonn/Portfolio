@@ -144,8 +144,14 @@ export const READING_LIST: ReadingCategory[] = [
   {
     category: 'Specialized Reports',
     items: [
-      { title: 'BOFIT Blog', link: 'https://www.bofit.fi/en/publications/bofit-blog/' },
-      { title: 'BBVA Research', link: 'https://www.bbvamarketstrategy.com/tag/turkey/' },
+      {
+        title: 'BOFIT Blog',
+        link: 'https://www.bofit.fi/en/publications/bofit-blog/',
+      },
+      {
+        title: 'BBVA Research',
+        link: 'https://www.bbvamarketstrategy.com/tag/turkey/',
+      },
       {
         title: 'Journal of Social and Personal Relationships',
         link: 'https://journals.sagepub.com/home/spr',
@@ -155,7 +161,10 @@ export const READING_LIST: ReadingCategory[] = [
   {
     category: 'Opinion',
     items: [
-      { title: 'Project Syndicate', link: 'https://www.project-syndicate.org/' },
+      {
+        title: 'Project Syndicate',
+        link: 'https://www.project-syndicate.org/',
+      },
       { title: 'The Economist', link: 'https://www.economist.com/' },
       { title: 'Jacobin', link: 'https://jacobin.com/' },
     ],

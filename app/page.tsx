@@ -556,7 +556,9 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">My Selection of Periodical Readings</h3>
+        <h3 className="mb-5 text-lg font-medium">
+          My Selection of Periodical Readings
+        </h3>
         <div className="columns-1 gap-8 sm:columns-2 md:columns-3">
           {READING_LIST.map((category) => (
             <div
