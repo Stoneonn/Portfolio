@@ -20,9 +20,6 @@ const canelaRegularItalic = localFont({
 
 export const viewport: Viewport = {
   width: 1024,
-  initialScale: 0.4,
-  minimumScale: 0.4,
-  maximumScale: 5.0,
   userScalable: true,
   themeColor: '#ffffff',
 }
