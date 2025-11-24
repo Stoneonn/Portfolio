@@ -19,8 +19,7 @@ const canelaRegularItalic = localFont({
 })
 
 export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
+  width: 1024,
   themeColor: '#ffffff',
 }
 
