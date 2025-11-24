@@ -141,10 +141,10 @@ function ProjectEmbed({ src, children }: ProjectEmbedProps) {
         </div>
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+        <MorphingDialogContent className="relative h-[80vh] w-[90vw] rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50 md:h-auto md:w-auto md:aspect-video">
           <iframe
             src={src}
-            className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+            className="h-full w-full rounded-xl md:aspect-video md:h-[70vh]"
             title="Embedded website"
           />
         </MorphingDialogContent>
@@ -291,10 +291,17 @@ function ProgressiveBlurSliderClockwise() {
 
 export default function Personal() {
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   const cycleTheme = () => {
@@ -401,7 +408,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-lg font-medium">Projects</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
@@ -451,7 +458,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-lg font-medium">Data</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6">
           {DATA_PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
               <div
@@ -639,7 +646,7 @@ export default function Personal() {
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
-        className="pointer-events-none relative mt-32 -mb-24 w-full"
+        className="pointer-events-none relative mt-32 -mb-24 hidden w-full md:block"
         aria-hidden="true"
       >
         <div className="relative">
@@ -651,8 +658,12 @@ export default function Personal() {
       </motion.section>
 
       {/* Dock — fixed at bottom center */}
-      <div className="fixed bottom-18 left-1/2 z-50 -translate-x-1/2">
-        <Dock magnification={80} distance={150} panelHeight={64}>
+      <div className="fixed bottom-18 left-1/2 z-50 -translate-x-1/2 scale-75 origin-bottom md:scale-100">
+        <Dock
+          magnification={isMobile ? 0 : 80}
+          distance={150}
+          panelHeight={64}
+        >
           <DockItem onClick={cycleTheme}>
             <DockIcon>{getThemeIcon()}</DockIcon>
             <DockLabel>{getThemeLabel()}</DockLabel>
