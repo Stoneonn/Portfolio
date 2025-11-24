@@ -33,7 +33,7 @@ const images = [
 
 export function Gallery() {
   return (
-    <section className="mb-12 w-full ml-0 md:-ml-[10%] md:w-[120%]">
+    <section className="mb-12 ml-0 w-full md:-ml-[10%] md:w-[120%]">
       <div className="overflow-hidden rounded-3xl bg-white dark:bg-zinc-950">
         <div className="flex flex-col gap-1">
           <div className="grid grid-cols-3 gap-1">

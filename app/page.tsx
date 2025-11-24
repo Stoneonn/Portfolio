@@ -141,7 +141,7 @@ function ProjectEmbed({ src, children }: ProjectEmbedProps) {
         </div>
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
-        <MorphingDialogContent className="relative h-[80vh] w-[90vw] rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50 md:h-auto md:w-auto md:aspect-video">
+        <MorphingDialogContent className="relative h-[80vh] w-[90vw] rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset md:aspect-video md:h-auto md:w-auto dark:bg-zinc-950 dark:ring-zinc-800/50">
           <iframe
             src={src}
             className="h-full w-full rounded-xl md:aspect-video md:h-[70vh]"
@@ -658,12 +658,8 @@ export default function Personal() {
       </motion.section>
 
       {/* Dock — fixed at bottom center */}
-      <div className="fixed bottom-18 left-1/2 z-50 -translate-x-1/2 scale-75 origin-bottom md:scale-100">
-        <Dock
-          magnification={isMobile ? 0 : 80}
-          distance={150}
-          panelHeight={64}
-        >
+      <div className="fixed bottom-18 left-1/2 z-50 origin-bottom -translate-x-1/2 scale-75 md:scale-100">
+        <Dock magnification={isMobile ? 0 : 80} distance={150} panelHeight={64}>
           <DockItem onClick={cycleTheme}>
             <DockIcon>{getThemeIcon()}</DockIcon>
             <DockLabel>{getThemeLabel()}</DockLabel>
