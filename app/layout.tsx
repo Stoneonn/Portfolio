@@ -59,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} ${canela.variable} ${canelaRegularItalic.variable} bg-[#FAFAFA] tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${geist.variable} ${geistMono.variable} ${canela.variable} ${canelaRegularItalic.variable} overflow-x-hidden bg-[#FAFAFA] tracking-tight antialiased dark:bg-zinc-950`}
       >
         <ThemeProvider
           enableSystem={true}

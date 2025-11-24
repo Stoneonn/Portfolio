@@ -6,7 +6,6 @@ import { Dock, DockItem, DockIcon, DockLabel } from '@/components/ui/dock'
 import {
   Home,
   FolderOpenDot,
-  Activity,
   Book,
   Mail,
   Sun,
@@ -14,6 +13,7 @@ import {
   Monitor,
   Music,
   X,
+  BookOpenText,
 } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
@@ -233,7 +233,7 @@ function ProgressiveBlurSlider() {
         ].map((letter, index) => (
           <div
             key={`${letter}-${index}`}
-            className="w-16 select-none text-center text-4xl font-[450] text-black dark:text-white"
+            className="w-16 text-center text-4xl font-[450] text-black select-none dark:text-white"
           >
             {letter}
           </div>
@@ -279,7 +279,7 @@ function ProgressiveBlurSliderClockwise() {
         ].map((letter, index) => (
           <div
             key={`${letter}-${index}`}
-            className="w-16 select-none text-center text-4xl font-[450] text-black dark:text-white"
+            className="w-16 text-center text-4xl font-[450] text-black select-none dark:text-white"
           >
             {letter}
           </div>
@@ -577,6 +577,7 @@ export default function Personal() {
       </motion.section>
 
       <motion.section
+        id="readings"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -680,11 +681,11 @@ export default function Personal() {
             <DockLabel>Projects</DockLabel>
           </DockItem>
 
-          <DockItem onClick={() => scrollToSection('data')}>
+          <DockItem onClick={() => scrollToSection('readings')}>
             <DockIcon>
-              <Activity className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
+              <BookOpenText className="h-6 w-6 text-zinc-800 dark:text-zinc-200" />
             </DockIcon>
-            <DockLabel>Data</DockLabel>
+            <DockLabel>Readings</DockLabel>
           </DockItem>
 
           <DockItem onClick={() => scrollToSection('contact')}>
