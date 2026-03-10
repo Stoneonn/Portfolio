@@ -610,7 +610,7 @@ export default function Personal() {
                       className="group flex items-center justify-between text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
                     >
                       <span>{item.title}</span>
-                      <span className="opacity-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100">
+                      <span className="opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100">
                         ↗
                       </span>
                     </a>
