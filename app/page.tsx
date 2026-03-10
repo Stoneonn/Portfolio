@@ -382,16 +382,16 @@ export default function Personal() {
                     height={48}
                     className="h-12 w-12 rounded-lg object-contain"
                   />
-                  <div className="flex flex-1 flex-row justify-between">
+                  <div className="flex flex-1 flex-col justify-between gap-1 sm:flex-row sm:items-center sm:gap-0">
                     <div>
                       <h4 className="font-normal dark:text-zinc-100">
                         {edu.degree}
                       </h4>
-                      <p className="text-zinc-500 dark:text-zinc-400">
+                      <p className="text-sm text-zinc-500 sm:text-base dark:text-zinc-400">
                         {edu.school}
                       </p>
                     </div>
-                    <p className="text-zinc-600 dark:text-zinc-400">
+                    <p className="text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
                       {edu.start} - {edu.end}
                     </p>
                   </div>
@@ -408,7 +408,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-lg font-medium">Projects</h3>
-        <div className="grid grid-cols-2 gap-3 sm:gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
@@ -458,7 +458,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-lg font-medium">Data</h3>
-        <div className="grid grid-cols-2 gap-3 sm:gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {DATA_PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
               <div
@@ -591,13 +591,13 @@ export default function Personal() {
         <h3 className="mb-5 text-lg font-medium">
           My Selection of Periodical Readings
         </h3>
-        <div className="columns-1 gap-8 sm:columns-2 md:columns-3">
+        <div className="columns-2 gap-4 sm:columns-3 sm:gap-6 lg:gap-8">
           {READING_LIST.map((category) => (
             <div
               key={category.category}
-              className="mb-8 break-inside-avoid-column rounded-xl border border-zinc-200/50 bg-zinc-50/50 p-6 transition-all duration-300 hover:border-zinc-300 hover:bg-zinc-50 hover:shadow-sm dark:border-zinc-800/50 dark:bg-zinc-900/20 dark:hover:border-zinc-700 dark:hover:bg-zinc-900"
+              className="mb-4 flex break-inside-avoid-column flex-col rounded-xl border border-zinc-200/50 bg-zinc-50/50 p-4 transition-all duration-300 hover:border-zinc-300 hover:bg-zinc-50 hover:shadow-sm sm:mb-8 sm:p-6 dark:border-zinc-800/50 dark:bg-zinc-900/20 dark:hover:border-zinc-700 dark:hover:bg-zinc-900"
             >
-              <h4 className="mb-4 font-[family-name:var(--font-canela-italic)] text-xl text-zinc-900 dark:text-zinc-100">
+              <h4 className="mb-4 font-[family-name:var(--font-canela-italic)] text-lg text-zinc-900 sm:text-xl dark:text-zinc-100">
                 {category.category}
               </h4>
               <ul className="space-y-2">
@@ -657,8 +657,8 @@ export default function Personal() {
         </div>
       </motion.section>
 
-      {/* Dock — fixed at bottom center */}
-      <div className="fixed bottom-18 left-1/2 z-50 origin-bottom -translate-x-1/2 scale-75 md:scale-100">
+      {/* Dock — fixed at bottom center (hidden on mobile) */}
+      <div className="fixed bottom-18 left-1/2 z-50 hidden origin-bottom -translate-x-1/2 scale-75 md:block md:scale-100">
         <Dock magnification={isMobile ? 0 : 80} distance={150} panelHeight={64}>
           <DockItem onClick={cycleTheme}>
             <DockIcon>{getThemeIcon()}</DockIcon>
