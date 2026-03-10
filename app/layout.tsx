@@ -31,10 +31,26 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: {
-    default: 'otaskaya, это я',
-    template: '%s | Nim',
+    default: 'Ömer Taşkaya — это я',
+    template: '%s | Ömer Taşkaya',
   },
-  description: 'Me as a website',
+  description:
+    'I am Ömer: a founder, student, researcher and much more. This is me, and my portfolio.',
+  openGraph: {
+    title: 'Ömer Taşkaya — это я',
+    description:
+      'I am Ömer: a founder, student, researcher and much more. This is me, and my portfolio.',
+    url: 'https://otaskaya.me/',
+    siteName: 'Ömer Taşkaya',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ömer Taşkaya — это я',
+    description:
+      'I am Ömer: a founder, student, researcher and much more. This is me, and my portfolio.',
+  },
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
