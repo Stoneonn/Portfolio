@@ -46,15 +46,15 @@ export const PROJECTS: Project[] = [
   {
     name: 'EcoIstanbul',
     description: 'Sustainable commutes in Istanbul, made easy.',
-    link: 'https://otaskaya.me/',
+    link: 'https://cagriokan.com/',
     image: '/ecoistanbul_deck.jpg',
     id: 'project1',
   },
   {
     name: 'Pigmenta',
     description:
-      'AI powered painting systems for shipyards: reliable, efficient, military-grade',
-    link: 'https://otaskaya.me/',
+      'AI powered coating systems for strategic industries: reliable, efficient, military-grade',
+    link: 'https://pigmenta.tech/',
     image: '/pigmenta_deck.jpg',
     id: 'project2',
   },

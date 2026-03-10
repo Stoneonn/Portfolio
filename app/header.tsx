@@ -13,7 +13,7 @@ export function Header() {
         </Link>
         <p className="max-w-md text-zinc-600 dark:text-zinc-500">
           Hey, welcome. I&apos;m Ömer, someone who aspire to be a lot of things,
-          you&apos;ll see. (WIP)
+          you&apos;ll see.
         </p>
       </div>
     </header>
