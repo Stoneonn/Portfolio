@@ -25,7 +25,7 @@ export function DayHeading({ day }: Props) {
       </h2>
       <a 
         className="btn-view-map" 
-        href="https://www.pampam.city/mdw-2026-guide-XV0ojFRgi06SEcru2zW5?45.458662%2C9.193747%2C12.72=" 
+        href="https://www.pampam.city/oemers-mdw-2026-bqHB3mB885uCqJpvSxOt?45.466145%2C9.194202%2C13.21=" 
         target="_blank" 
         rel="noopener noreferrer"
       >
