@@ -44,3 +44,7 @@ next-env.d.ts
 /public/gallery/*.jpg
 /public/gallery/*.png
 /public/gallery/*.jpeg
+
+# MDW guide (Vite app under /designweek)
+/designweek/node_modules
+/designweek/dist

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:designweek": "cd designweek && npm install && npm run dev",
+    "build:designweek": "cd designweek && npm install && npm run build && rm -rf ../public/designweek && mkdir -p ../public/designweek && cp -r dist/. ../public/designweek/"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.0.1",
