@@ -1,5 +1,4 @@
 import type { ScheduleEvent } from "../lib/eventsFromCsv";
-import { formatOrdinalDay, weekdayNameForAprilDay2026 } from "../lib/parseScheduleDates";
 
 type Props = {
   event: ScheduleEvent;
@@ -10,12 +9,10 @@ function mapsUrl(query: string): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
 
-export function EventCard({ event, selectedDay }: Props) {
+export function EventCard({ event, selectedDay: _selectedDay }: Props) {
   const href = event.eventUrl;
   const hasLink = Boolean(href);
   const cover = event.coverImage.trim();
-  const dayName = weekdayNameForAprilDay2026(selectedDay).toUpperCase();
-  const dayOrd = formatOrdinalDay(selectedDay);
 
   const brandInner = <span>{event.brand}</span>;
   const subtitleInner = (
@@ -37,6 +34,9 @@ export function EventCard({ event, selectedDay }: Props) {
           </>
         ) : (
           <span>No poster</span>
+        )}
+        {event.activeDays.length === 1 && (
+          <div className="event-card__badge">One Day Only</div>
         )}
       </div>
 
@@ -66,7 +66,7 @@ export function EventCard({ event, selectedDay }: Props) {
 
       <div className="event-card__access">{event.access}</div>
       <p className="event-card__line">
-        {dayName} {dayOrd}
+        {event.dateRaw.toUpperCase()}
       </p>
       <p className="event-card__line">{event.timeLabel}</p>
       <p className="event-card__line event-card__line--venue">{event.venue}</p>

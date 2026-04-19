@@ -137,5 +137,12 @@ export function eventsForDay(
   events: ScheduleEvent[],
   day: number
 ): ScheduleEvent[] {
-  return events.filter((e) => e.activeDays.includes(day));
+  return events
+    .filter((e) => e.activeDays.includes(day))
+    .sort((a, b) => {
+      // Single day events (one-off) first
+      if (a.activeDays.length === 1 && b.activeDays.length > 1) return -1;
+      if (a.activeDays.length > 1 && b.activeDays.length === 1) return 1;
+      return 0;
+    });
 }

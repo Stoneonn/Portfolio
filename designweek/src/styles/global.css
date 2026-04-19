@@ -244,6 +244,21 @@ a:hover {
   letter-spacing: 0.12em;
 }
 
+.event-card__badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--neon);
+  color: var(--black);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  z-index: 10;
+  pointer-events: none;
+}
+
 .event-card__brand {
   display: inline-block;
   align-self: flex-start;
