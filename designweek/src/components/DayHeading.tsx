@@ -19,8 +19,18 @@ export function DayHeading({ day }: Props) {
   }, [day]);
 
   return (
-    <h2 ref={ref} className="day-heading" id="day-heading">
-      {w} {day}
-    </h2>
+    <div className="day-header-row">
+      <h2 ref={ref} className="day-heading" id="day-heading">
+        {w} {day}
+      </h2>
+      <a 
+        className="btn-view-map" 
+        href="https://www.pampam.city/mdw-2026-guide-XV0ojFRgi06SEcru2zW5?45.458662%2C9.193747%2C12.72=" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        View Map
+      </a>
+    </div>
   );
 }

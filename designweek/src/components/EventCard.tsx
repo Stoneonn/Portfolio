@@ -31,7 +31,10 @@ export function EventCard({ event, selectedDay }: Props) {
         }
       >
         {cover ? (
-          <img src={cover} alt="" loading="lazy" />
+          <>
+            <img className="event-card__cover-bg" src={cover} alt="" aria-hidden="true" />
+            <img className="event-card__cover-fg" src={cover} alt="" loading="lazy" />
+          </>
         ) : (
           <span>No poster</span>
         )}
