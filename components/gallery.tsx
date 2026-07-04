@@ -4,76 +4,38 @@ import { motion } from 'motion/react'
 import Image from 'next/image'
 
 const images = [
-  {
-    src: 'https://i.imgur.com/9XT6vDr.jpeg',
-    alt: 'Portrait',
-    className: 'col-span-1 row-span-1',
-  },
-  {
-    src: 'https://i.imgur.com/KffUo1J.jpeg',
-    alt: 'Speaking event',
-    className: 'col-span-1 row-span-1',
-  },
-  {
-    src: 'https://i.imgur.com/3qu6gzX.jpeg',
-    alt: 'Photography',
-    className: 'col-span-1 row-span-1',
-  },
-  {
-    src: 'https://i.imgur.com/yLb86Jf.jpeg',
-    alt: 'Travel',
-    className: 'col-span-1.5 row-span-1',
-  },
-  {
-    src: 'https://i.imgur.com/PWm2p78.jpeg',
-    alt: 'Snow',
-    className: 'col-span-1.5 row-span-1',
-  },
+  { src: 'https://i.imgur.com/9XT6vDr.jpeg', alt: 'Portrait' },
+  { src: 'https://i.imgur.com/KffUo1J.jpeg', alt: 'Speaking event' },
+  { src: 'https://i.imgur.com/3qu6gzX.jpeg', alt: 'Photography' },
+  { src: 'https://i.imgur.com/yLb86Jf.jpeg', alt: 'Travel' },
+  { src: 'https://i.imgur.com/PWm2p78.jpeg', alt: 'Snow' },
 ]
 
+/*
+  Contact sheet: frameless, edge to edge. Swipes horizontally on mobile,
+  sits as a single five-across strip on desktop.
+*/
 export function Gallery() {
   return (
-    <section className="mb-12 ml-0 w-full md:-ml-[10%] md:w-[120%]">
-      <div className="overflow-hidden rounded-3xl bg-white dark:bg-zinc-950">
-        <div className="flex flex-col gap-1">
-          <div className="grid grid-cols-3 gap-1">
-            {images.slice(0, 3).map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="relative aspect-[1.2/1] overflow-hidden bg-zinc-100 dark:bg-zinc-800"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </motion.div>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 gap-1">
-            {images.slice(3, 5).map((image, index) => (
-              <motion.div
-                key={index + 3}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: (index + 3) * 0.1 }}
-                className="relative aspect-[1.6/1] overflow-hidden bg-zinc-100 dark:bg-zinc-800"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+    <div className="flex snap-x snap-mandatory gap-0.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] md:grid md:grid-cols-5 md:overflow-visible [&::-webkit-scrollbar]:hidden">
+      {images.map((image, index) => (
+        <motion.div
+          key={image.src}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.55, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+          className="relative aspect-[3/4] w-[68vw] flex-none snap-center overflow-hidden md:w-auto"
+        >
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            sizes="(max-width: 768px) 68vw, 20vw"
+            className="object-cover"
+          />
+        </motion.div>
+      ))}
+    </div>
   )
 }

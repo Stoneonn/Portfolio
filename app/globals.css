@@ -1,14 +1,61 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography';
+
+/*
+  Kill-switch: single art-directed experience — the class-based dark variant
+  stays registered so stray `dark:*` utilities can never activate via OS
+  preference (`.dark` is never applied).
+*/
 @custom-variant dark (&:is(.dark *));
+
+/* Static poles of the day. Everything between them is interpolated live. */
+@theme {
+  --color-paper: #f5eedf;
+  --color-ink: #1d1a15;
+  --color-bone: #ede7d9;
+  --color-navy: #253677;
+  --color-neon: #ccff00;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-canela);
+}
+
+/*
+  The day→dusk channel. JS drives these four variables from scroll position
+  on the page wrapper; these are the 09:00 defaults for SSR/first paint.
+*/
+:root {
+  --fg: #1d1a15;
+  --soft: #6e6656;
+  --line: rgba(29, 26, 21, 0.18);
+  --accent: #26337b;
+}
+
+.c-fg {
+  color: var(--fg);
+}
+.c-soft {
+  color: var(--soft);
+}
+.c-accent {
+  color: var(--accent);
+}
+.b-line {
+  border-color: var(--line);
+}
+.bg-line {
+  background-color: var(--line);
+}
+.font-canela-italic {
+  font-family: var(--font-canela-italic);
+}
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
   looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
 */
 @layer base {
   *,
@@ -20,13 +67,15 @@
   }
 }
 
-:root {
-  --sh-class: #7aa2f7;
-  --sh-sign: #89ddff;
-  --sh-string: #9ece6a;
-  --sh-keyword: #bb9af7;
-  --sh-comment: #565f89;
-  --sh-jsxliterals: #7aa2f7;
-  --sh-property: #73daca;
-  --sh-entity: #e0af68;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overscroll-behavior-y: none;
+}
+
+::selection {
+  background: #ccff00;
+  color: #1d1a15;
 }
