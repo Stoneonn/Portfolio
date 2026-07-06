@@ -19,10 +19,10 @@ export const CITIES: City[] = [
 
 export const PRESS_CATEGORIES = [
   'World News',
-  'Reports',
+  'Specialized Reports',
   'Opinion',
-  'Türkiye',
-  'Россия',
+  'Turkish News',
+  'Russian News',
   'Culture',
 ] as const
 
@@ -30,7 +30,6 @@ export type PressCategory = (typeof PRESS_CATEGORIES)[number]
 
 export type WireItem = {
   masthead: string
-  cyr?: string
   category: PressCategory
   url: string
 }
@@ -39,27 +38,27 @@ export type WireItem = {
 export const WIRE: WireItem[] = [
   { masthead: 'Reuters', category: 'World News', url: 'https://www.reuters.com/' },
   { masthead: 'Financial Times', category: 'World News', url: 'https://www.ft.com/' },
-  { masthead: 'BOFIT', category: 'Reports', url: 'https://www.bofit.fi/en/publications/bofit-blog/' },
-  { masthead: 'BBVA Research', category: 'Reports', url: 'https://www.bbvamarketstrategy.com/tag/turkey/' },
-  { masthead: 'J. of Social & Personal Relationships', category: 'Reports', url: 'https://journals.sagepub.com/home/spr' },
+  { masthead: 'BOFIT', category: 'Specialized Reports', url: 'https://www.bofit.fi/en/publications/bofit-blog/' },
+  { masthead: 'BBVA Research', category: 'Specialized Reports', url: 'https://www.bbvamarketstrategy.com/tag/turkey/' },
+  { masthead: 'J. of Social & Personal Relationships', category: 'Specialized Reports', url: 'https://journals.sagepub.com/home/spr' },
   { masthead: 'The Economist', category: 'Opinion', url: 'https://www.economist.com/' },
   { masthead: 'Project Syndicate', category: 'Opinion', url: 'https://www.project-syndicate.org/' },
   { masthead: 'Jacobin', category: 'Opinion', url: 'https://jacobin.com/' },
-  { masthead: 'Ekonomi Gazetesi', category: 'Türkiye', url: 'https://www.ekonomigazetesi.com/' },
-  { masthead: 'Aposto', category: 'Türkiye', url: 'https://aposto.com/n/daily?tab=issue' },
-  { masthead: 'Novaya Gazeta', cyr: 'Новая газета', category: 'Россия', url: 'https://novayagazeta.eu/' },
-  { masthead: 'The Moscow Times', category: 'Россия', url: 'https://www.themoscowtimes.com/' },
-  { masthead: 'The Bell', category: 'Россия', url: 'https://thebell.io/' },
-  { masthead: 'Mediazona', cyr: 'Медиазона', category: 'Россия', url: 'https://zona.media/' },
-  { masthead: 'Interfax', cyr: 'Интерфакс', category: 'Россия', url: 'https://www.interfax.ru/' },
+  { masthead: 'Ekonomi Gazetesi', category: 'Turkish News', url: 'https://www.ekonomigazetesi.com/' },
+  { masthead: 'Aposto', category: 'Turkish News', url: 'https://aposto.com/n/daily?tab=issue' },
+  { masthead: 'Novaya Gazeta', category: 'Russian News', url: 'https://novayagazeta.eu/' },
+  { masthead: 'The Moscow Times', category: 'Russian News', url: 'https://www.themoscowtimes.com/' },
+  { masthead: 'The Bell', category: 'Russian News', url: 'https://thebell.io/' },
+  { masthead: 'Mediazona', category: 'Russian News', url: 'https://zona.media/' },
+  { masthead: 'Interfax', category: 'Russian News', url: 'https://www.interfax.ru/' },
   { masthead: 'The New Yorker', category: 'Culture', url: 'https://www.newyorker.com/' },
   { masthead: 'ArchDaily', category: 'Culture', url: 'https://www.archdaily.com/' },
+  { masthead: 'Dezeen', category: 'Culture', url: 'https://www.dezeen.com/' },
 ]
 
 export type School = {
   name: string
   degree: string
-  years: string
   url: string
   logo: string
 }
@@ -67,22 +66,19 @@ export type School = {
 export const EDUCATION: School[] = [
   {
     name: 'Bocconi University',
-    degree: 'BSc International Economics & Management',
-    years: '2025–2028',
+    degree: 'BSc Economics & Management',
     url: 'https://www.unibocconi.it/en',
     logo: '/logos/bocconi_logo.png',
   },
   {
     name: 'UWC Dilijan',
     degree: 'IB Diploma',
-    years: '2023–2025',
     url: 'https://uwcdilijan.org',
     logo: '/logos/uwcdilijan_logo.png',
   },
   {
     name: 'TEV İnanç Türkeş High School',
     degree: 'T21C',
-    years: '2020–2023',
     url: 'https://tevitol.k12.tr/',
     logo: '/logos/tevitol.png',
   },
@@ -108,7 +104,7 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     name: 'MDW 2026',
-    line: 'A field guide to Milan Design Week — 100+ events, hours, tickets, maps. Built solo.',
+    line: 'My personal selection to the Milan Design Week this year, curated to explore.',
     url: '/designweek',
     tag: 'APR 2026',
     live: true,
@@ -140,7 +136,7 @@ export const INSTRUMENTS: Instrument[] = [
   {
     id: 'been',
     name: 'Been',
-    line: 'every place, on the map',
+    line: 'all the places I’ve Been',
     url: 'https://beeneverywhere.net/',
     embed: 'https://beeneverywhere.net/user/otaskaya',
     color: '#FF385C',
@@ -148,7 +144,7 @@ export const INSTRUMENTS: Instrument[] = [
   {
     id: 'lastfm',
     name: 'Last.fm',
-    line: 'four years of listening',
+    line: 'listening history',
     url: 'https://www.last.fm/user/otaskaya',
     embed: 'https://lastfmstats.com/user/otaskaya/charts',
     color: '#B90000',
@@ -156,14 +152,14 @@ export const INSTRUMENTS: Instrument[] = [
   {
     id: 'goodreads',
     name: 'Goodreads',
-    line: 'the shelf, in public',
+    line: 'the bookshelf',
     url: 'https://www.goodreads.com/user/show/135046786-stoneon',
     color: '#F4F1EA',
   },
   {
     id: 'imdb',
     name: 'IMDB',
-    line: 'ratings, defended',
+    line: 'ratings',
     url: 'https://www.imdb.com/user/ur143130788/ratings/?sort=top_rated%2Cdesc&view=detailed',
     color: '#F5C518',
   },
@@ -198,6 +194,8 @@ export const PAINTINGS: Painting[] = [
 ]
 
 export const EMAIL = 'omertaskaya@gmail.com'
+
+export const EMAIL_DISPLAY = 'omertaskaya [at] gmail.com'
 
 export const SOCIALS = [
   { label: 'Instagram', url: 'https://www.instagram.com/otaskaya_' },

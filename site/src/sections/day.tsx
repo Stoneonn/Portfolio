@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { EDUCATION, PRESS_CATEGORIES, WIRE } from '../data'
 import { Stamp } from '../ui/bits'
 
@@ -19,80 +18,43 @@ export function A1() {
       >
         Ömer Taşkaya
       </h1>
-      <p className="deck c-soft mt-3 text-lg">
-        <span lang="ru">это я</span> — this is me
-      </p>
-      <p className="c-fg mt-8 max-w-xl text-[15px] leading-relaxed">
-        Twenty. Economics at Bocconi; AI, photographs, and acid techno after
-        dark. One page, one day — first light to first light.
+      <p className="c-fg mt-6 max-w-xl text-[15px] leading-relaxed">
+        Hey, welcome. I’m Ömer, someone who aspires to be a lot of things,
+        you’ll see.
       </p>
       <p className="mono c-soft mt-8 text-[10px] tracking-[0.3em] uppercase">
-        Scroll — the day passes ↓
+        Scroll ↓
       </p>
     </header>
   )
 }
 
-/* ————— 07:00 · Press ————— */
-
-function CyrTitle({ cyr, latin }: { cyr: string; latin: string }) {
-  const [flipped, setFlipped] = useState(false)
-  return (
-    <button
-      type="button"
-      onClick={() => setFlipped((f) => !f)}
-      className="serif cursor-pointer text-left"
-      aria-label={`${latin} — transliterate`}
-    >
-      <span lang={flipped ? undefined : 'ru'}>{flipped ? latin : cyr}</span>
-    </button>
-  )
-}
+/* ————— 13:00 · Press ————— */
 
 export function Press() {
   return (
-    <section id="press" data-hour="7.1" className={`${SHELL} mt-36`}>
-      <Stamp time="07:00" title="Press" />
+    <section id="press" data-hour="13" className={`${SHELL} mt-36`}>
+      <Stamp time="13:00" title="Periodical readings" />
       <div className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
         {PRESS_CATEGORIES.map((cat) => (
           <div key={cat} className="rv">
-            <h3
-              lang={cat === 'Россия' ? 'ru' : undefined}
-              className="c-soft mono b-line border-b pb-2 text-[10px] tracking-[0.24em] uppercase"
-            >
+            <h3 className="c-soft mono b-line border-b pb-2 text-[10px] tracking-[0.24em] uppercase">
               {cat}
             </h3>
             <ul className="mt-3 space-y-1.5">
               {WIRE.filter((w) => w.category === cat).map((w) => (
-                <li key={w.masthead} className="flex items-baseline justify-between gap-3">
-                  {w.cyr ? (
-                    <>
-                      <span className="serif c-fg text-lg leading-snug">
-                        <CyrTitle cyr={w.cyr} latin={w.masthead} />
-                      </span>
-                      <a
-                        href={w.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Open ${w.masthead}`}
-                        className="c-soft -m-2 shrink-0 p-2 text-xs"
-                      >
-                        ↗
-                      </a>
-                    </>
-                  ) : (
-                    <a
-                      href={w.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="serif c-fg group flex w-full items-baseline justify-between gap-3 text-lg leading-snug"
-                    >
-                      <span>{w.masthead}</span>
-                      <span className="c-soft shrink-0 text-xs opacity-0 transition-opacity group-hover:opacity-100">
-                        ↗
-                      </span>
-                    </a>
-                  )}
+                <li key={w.masthead}>
+                  <a
+                    href={w.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="serif c-fg group flex w-full items-baseline justify-between gap-3 text-lg leading-snug"
+                  >
+                    <span>{w.masthead}</span>
+                    <span className="c-soft shrink-0 text-xs opacity-0 transition-opacity group-hover:opacity-100">
+                      ↗
+                    </span>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -103,12 +65,12 @@ export function Press() {
   )
 }
 
-/* ————— 10:00 · Education ————— */
+/* ————— 11:00 · Education ————— */
 
 export function Education() {
   return (
-    <section id="education" data-hour="10" className={`${SHELL} mt-36`}>
-      <Stamp time="10:00" title="Education" />
+    <section id="education" data-hour="11" className={`${SHELL} mt-36`}>
+      <Stamp time="11:00" title="Education" />
       <div className="grid gap-12 md:grid-cols-12">
         <div className="md:col-span-7">
           {EDUCATION.map((s, i) => (
@@ -133,11 +95,11 @@ export function Education() {
                   src={s.logo}
                   alt=""
                   loading="lazy"
-                  className="h-8 w-8 shrink-0 object-contain opacity-70 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0"
+                  className="h-12 w-12 shrink-0 self-center object-contain md:h-14 md:w-14"
                 />
               </div>
               <p className="mono c-soft mt-2 text-[10px] tracking-[0.18em] uppercase">
-                {s.degree} — {s.years}
+                {s.degree}
               </p>
             </a>
           ))}
@@ -155,12 +117,12 @@ export function Education() {
   )
 }
 
-/* ————— 14:00 · Photographs ————— */
+/* ————— 15:30 · Photographs ————— */
 
 export function Photos() {
   return (
-    <section id="photos" data-hour="14" className={`${SHELL} mt-36`}>
-      <Stamp time="14:00" title="Photographs" />
+    <section id="photos" data-hour="15.5" className={`${SHELL} mt-36`}>
+      <Stamp time="15:30" title="Photographs" />
       <div className="grid grid-cols-12 gap-y-6 md:gap-y-10">
         <figure className="expose col-span-12 md:-mx-10">
           <img src="/photos/03-camera.jpg" alt="With a camera, in the green" className="w-full object-cover" loading="lazy" />

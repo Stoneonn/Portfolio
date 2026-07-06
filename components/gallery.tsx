@@ -24,7 +24,11 @@ export function Gallery() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.55, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+          transition={{
+            duration: 0.55,
+            delay: index * 0.06,
+            ease: [0.22, 1, 0.36, 1],
+          }}
           className="relative aspect-[3/4] w-[68vw] flex-none snap-center overflow-hidden md:w-auto"
         >
           <Image

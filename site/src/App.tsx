@@ -70,13 +70,13 @@ export default function App() {
       {engine && <Hud engine={engine} />}
       <main>
         <A1 />
-        <Press />
+        <Built />
         <Education />
+        <Press />
         <Photos />
         <Foreign engine={engine} />
         <Dusk />
         <Records />
-        <Built />
         <Contact />
         <Ending />
       </main>

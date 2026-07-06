@@ -73,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geist.variable} ${geistMono.variable} ${canela.variable} ${canelaRegularItalic.variable} c-fg overflow-x-hidden bg-paper font-sans tracking-tight antialiased`}
+        className={`${geist.variable} ${geistMono.variable} ${canela.variable} ${canelaRegularItalic.variable} c-fg bg-paper overflow-x-hidden font-sans tracking-tight antialiased`}
       >
         {children}
       </body>

@@ -181,7 +181,7 @@ function ProjectEmbed({
 function BrandName({ id }: { id: string }) {
   if (id === 'been') {
     return (
-      <span className="font-sans text-3xl font-bold tracking-tight italic text-[#FF5470]">
+      <span className="font-sans text-3xl font-bold tracking-tight text-[#FF5470] italic">
         BEEN
       </span>
     )
@@ -203,11 +203,7 @@ function BrandName({ id }: { id: string }) {
   )
 }
 
-function DataRow({
-  project,
-}: {
-  project: (typeof DATA_PROJECTS)[number]
-}) {
+function DataRow({ project }: { project: (typeof DATA_PROJECTS)[number] }) {
   const row = (
     <div className="b-line group grid cursor-pointer grid-cols-[1fr_auto] items-center gap-4 border-t py-6 text-left">
       <div>
@@ -243,8 +239,7 @@ export default function Personal() {
 
   useEffect(() => {
     const measure = () => {
-      const total =
-        document.documentElement.scrollHeight - window.innerHeight
+      const total = document.documentElement.scrollHeight - window.innerHeight
       if (total <= 0) return
       const at = (el: Element | null) =>
         el
@@ -286,7 +281,13 @@ export default function Personal() {
   const { scrollYProgress } = useScroll()
 
   /* The sky. Paper morning → golden hour → ink night → blue-black dusk. */
-  const bgStops = ascending([0, marks.built, marks.gapA, marks.gapB, marks.dusk])
+  const bgStops = ascending([
+    0,
+    marks.built,
+    marks.gapA,
+    marks.gapB,
+    marks.dusk,
+  ])
   const bg = useTransform(
     scrollYProgress,
     [...bgStops, 1],
@@ -333,9 +334,11 @@ export default function Personal() {
     marks.guest,
     marks.dusk,
   ])
-  const clockMinutes = useTransform(scrollYProgress, clockStops, [
-    540, 660, 900, 1180, 1290, 1380, 1435, 1439,
-  ])
+  const clockMinutes = useTransform(
+    scrollYProgress,
+    clockStops,
+    [540, 660, 900, 1180, 1290, 1380, 1435, 1439],
+  )
   const clockText = useTransform(clockMinutes, formatClock)
   const clockOpacity = useTransform(
     scrollYProgress,
@@ -369,7 +372,9 @@ export default function Personal() {
         </motion.div>
 
         {/* ——— 09:00, the opening ——— */}
-        <header className={`${PAD} flex min-h-[92svh] flex-col justify-end pb-14`}>
+        <header
+          className={`${PAD} flex min-h-[92svh] flex-col justify-end pb-14`}
+        >
           <div>
             <h1 className="c-fg font-serif text-[clamp(3rem,15vw,11rem)] leading-[0.92] tracking-tight">
               <motion.span
@@ -498,13 +503,13 @@ export default function Personal() {
             {/* The exhibition poster keeps its own identity. */}
             <a
               href={FEATURED_EXHIBITION.href}
-              className="group block bg-neon p-7 text-black transition-transform duration-300 hover:-translate-y-1 sm:p-10 md:-ml-28"
+              className="group bg-neon block p-7 text-black transition-transform duration-300 hover:-translate-y-1 sm:p-10 md:-ml-28"
             >
               <div className="flex items-start justify-between gap-4">
                 <p className="text-[0.65rem] font-extrabold tracking-[0.28em] uppercase">
                   {FEATURED_EXHIBITION.overline}
                 </p>
-                <span className="shrink-0 bg-black px-2 py-1 text-[0.58rem] font-extrabold tracking-[0.1em] text-neon uppercase">
+                <span className="text-neon shrink-0 bg-black px-2 py-1 text-[0.58rem] font-extrabold tracking-[0.1em] uppercase">
                   Past exhibition
                 </span>
               </div>
@@ -515,7 +520,7 @@ export default function Personal() {
                 {FEATURED_EXHIBITION.description}
               </p>
               <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
-                <span className="inline-flex rounded-full bg-black px-5 py-2.5 text-[0.65rem] font-extrabold tracking-[0.08em] text-neon uppercase transition-transform duration-300 group-hover:scale-105">
+                <span className="text-neon inline-flex rounded-full bg-black px-5 py-2.5 text-[0.65rem] font-extrabold tracking-[0.08em] uppercase transition-transform duration-300 group-hover:scale-105">
                   Open the guide ↗
                 </span>
                 <span className="text-[0.62rem] font-bold tracking-[0.06em] uppercase">
@@ -558,10 +563,7 @@ export default function Personal() {
         </section>
 
         {/* ——— the sun goes down ——— */}
-        <div
-          ref={gapRef}
-          className="flex h-[65vh] items-center justify-center"
-        >
+        <div ref={gapRef} className="flex h-[65vh] items-center justify-center">
           <p className="c-soft font-mono text-[0.62rem] tracking-[0.35em] uppercase">
             19:12 — golden hour ends
           </p>
@@ -679,7 +681,7 @@ export default function Personal() {
             <div className="relative">
               <div
                 aria-hidden
-                className="absolute inset-x-0 top-1/2 h-[46%] -translate-y-1/2 bg-navy"
+                className="bg-navy absolute inset-x-0 top-1/2 h-[46%] -translate-y-1/2"
               />
               <div className="relative mx-auto max-w-xl px-8 sm:px-6">
                 <Image

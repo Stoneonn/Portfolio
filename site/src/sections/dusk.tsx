@@ -32,7 +32,7 @@ function routePath(): string {
 export function Foreign({ engine }: { engine: DayEngine | null }) {
   const wrapRef = useRef<HTMLDivElement>(null)
   const tickRef = useRef<HTMLSpanElement>(null)
-  const pathRef = useRef<SVGPathElement>(null)
+  const clipRef = useRef<SVGRectElement>(null)
   const closerRef = useRef<HTMLParagraphElement>(null)
   const cityRefs = useRef<Array<HTMLSpanElement | null>>([])
   const coordRefs = useRef<Array<HTMLSpanElement | null>>([])
@@ -52,7 +52,9 @@ export function Foreign({ engine }: { engine: DayEngine | null }) {
 
       const sunX = 4 + p * 92
       if (tickRef.current) tickRef.current.style.left = `${sunX}%`
-      if (pathRef.current) pathRef.current.style.strokeDashoffset = String(Math.max(0, 1 - p * 1.15))
+      /* the route exists exactly where the sun has passed — clipped at the
+         tick's x, so line and sun can never drift apart on any device */
+      if (clipRef.current) clipRef.current.setAttribute('width', String(sunX * 10))
       if (closerRef.current) closerRef.current.style.opacity = p > 0.82 ? '1' : '0'
 
       CITIES.forEach((c, i) => {
@@ -85,23 +87,25 @@ export function Foreign({ engine }: { engine: DayEngine | null }) {
               className="pointer-events-none absolute inset-x-0 bottom-0 h-[190px] w-full"
               aria-hidden
             >
+              <defs>
+                <clipPath id="route-reveal">
+                  <rect ref={clipRef} x="0" y="0" width="0" height="190" />
+                </clipPath>
+              </defs>
               <path
-                ref={pathRef}
                 d={routePath()}
-                pathLength={1}
-                strokeDasharray="1"
-                strokeDashoffset="1"
                 fill="none"
                 stroke="var(--acc)"
                 strokeWidth="1.2"
                 vectorEffect="non-scaling-stroke"
                 opacity="0.85"
+                clipPath="url(#route-reveal)"
               />
             </svg>
 
             <span
               ref={tickRef}
-              className="c-acc absolute -top-3 -translate-x-1/2 text-sm"
+              className="c-acc absolute -top-3.5 -translate-x-1/2 text-base md:-top-3 md:text-sm"
               style={{ left: '4%' }}
               aria-hidden
             >
@@ -146,7 +150,7 @@ export function Foreign({ engine }: { engine: DayEngine | null }) {
             className="mono c-soft mt-16 text-center text-[10px] tracking-[0.26em] uppercase transition-opacity duration-700"
             style={{ opacity: 0 }}
           >
-            37°N → 45°N. Northbound, with one detour into the mountains.
+            37°N → 45°N
           </p>
         </div>
       </div>

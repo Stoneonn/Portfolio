@@ -25,7 +25,7 @@
   --color-milk: #eaf0f4;
   --color-night: #0a0e1a;
   --color-acid: #ccff00;
-  --color-wire: #e33a2e;
+  --color-wire: #b3382e;
   --color-navy: #1b2a44;
   --color-amber: #e8a64c;
 }
@@ -80,9 +80,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* selection obeys the clock: the day's accent, with engine-computed ink */
 ::selection {
-  background: #ccff00;
-  color: #101418;
+  background: var(--acc, #e8a64c);
+  color: var(--selfg, #101418);
 }
 
 /* Thin, dark, deliberate. */

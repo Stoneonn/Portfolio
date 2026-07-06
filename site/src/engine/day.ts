@@ -43,7 +43,7 @@ const KEYS: Key[] = [
   /* fg holds pale until 6.45, then flips fast — the contrast clamp below insures the crossing */
   { h: 6.45, z: '#2C4265', m: '#6C8098', hz: '#E8A64C', fg: '#C8CFDA', soft: '#9AA6B8', acc: '#E8A64C', night: 0.5, grain: 0.06 },
   { h: 6.85, z: '#7FA0BC', m: '#B9C9D4', hz: '#EFD9AC', fg: '#1A2026', soft: '#4E5862', acc: '#B3382E', night: 0.2, grain: 0.05 },
-  { h: 7.2, z: '#93AEC4', m: '#C9D4DC', hz: '#F0D9A8', fg: '#22292F', soft: '#525C66', acc: '#C0392B', night: 0.1, grain: 0.045 },
+  { h: 7.2, z: '#93AEC4', m: '#C9D4DC', hz: '#F0D9A8', fg: '#22292F', soft: '#525C66', acc: '#B3382E', night: 0.1, grain: 0.045 },
   { h: 9.0, z: '#C7D8E2', m: '#E2EAEF', hz: '#EFF3F1', fg: '#101418', soft: '#4C555F', acc: '#B3382E', night: 0, grain: 0.035 },
   { h: 13.0, z: '#D3E2EA', m: '#EAF0F4', hz: '#F4F6F4', fg: '#101418', soft: '#49525C', acc: '#B3382E', night: 0, grain: 0.03 },
   { h: 16.5, z: '#BFD3DE', m: '#E5E9E3', hz: '#F2E3C2', fg: '#14161A', soft: '#4E5560', acc: '#B3382E', night: 0, grain: 0.035 },
@@ -193,7 +193,8 @@ export function initDay(skyOffRanges: Array<[number, number]>): DayEngine {
 
   const hourAt = (y: number): number => {
     if (anchors.length === 0) return 5.7 + (y / maxScroll) * 24
-    const pts = [{ y: 0, hour: 5.7 }, ...anchors, { y: maxScroll, hour: 29.7 }]
+    /* the page ends in deep night — the ending stays under the same sky */
+    const pts = [{ y: 0, hour: 5.7 }, ...anchors, { y: maxScroll, hour: 28.4 }]
     let i = 0
     while (i < pts.length - 2 && pts[i + 1].y <= y) i++
     const a = pts[i]
@@ -244,7 +245,12 @@ export function initDay(skyOffRanges: Array<[number, number]>): DayEngine {
     root.style.setProperty('--fg', fgSafe)
     root.style.setProperty('--soft', softSafe)
     root.style.setProperty('--line', rgbWithAlpha(fgSafe, 0.22))
-    root.style.setProperty('--acc', skyOff ? '#CCFF00' : s.acc)
+    const accNow = skyOff ? 'rgb(204,255,0)' : s.acc
+    root.style.setProperty('--acc', accNow)
+    root.style.setProperty(
+      '--selfg',
+      contrast(INK, accNow) >= contrast(BONE, accNow) ? INK : BONE,
+    )
     root.style.setProperty('--grain', skyOff ? '0.05' : s.grain.toFixed(3))
     root.style.setProperty('--skytop', skyOff ? 'rgba(5,5,5,0.88)' : rgbWithAlpha(s.z, 0.82))
 

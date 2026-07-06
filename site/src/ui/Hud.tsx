@@ -1,19 +1,51 @@
 import { useEffect, useRef } from 'react'
 import { clockOf, type DayEngine } from '../engine/day'
 
+/* The day runs 05:41 → ~04:24 across the scroll; the arc shows where you are. */
+const DAY_START = 5.7
+const DAY_END = 28.4
+
+/* Quadratic arc in the 100×32 viewBox. Endpoints sit on the bottom edge so
+   that, with baseline alignment, the arc's feet land on the text baseline. */
+const P0 = { x: 4, y: 32 }
+const C = { x: 50, y: 6 }
+const P2 = { x: 96, y: 32 }
+
+function arcPoint(t: number): { x: number; y: number } {
+  const u = 1 - t
+  return {
+    x: u * u * P0.x + 2 * u * t * C.x + t * t * P2.x,
+    y: u * u * P0.y + 2 * u * t * C.y + t * t * P2.y,
+  }
+}
+
+const ARC_D = `M ${P0.x} ${P0.y} Q ${C.x} ${C.y} ${P2.x} ${P2.y}`
+
 /*
-  The clock. Name left, hour right, nothing else.
-  Driven by direct DOM writes — React never re-renders this.
+  The instrument strip. Name left; right, the day itself: a drawn arc with
+  a dot riding it, digits kept small beside it. Driven by direct DOM writes —
+  React never re-renders this.
 */
 export function Hud({ engine }: { engine: DayEngine }) {
   const clockRef = useRef<HTMLSpanElement>(null)
+  const dotRef = useRef<SVGCircleElement>(null)
+  const clipRef = useRef<SVGRectElement>(null)
 
   useEffect(() => {
-    let last = ''
+    let lastClock = ''
+    let lastX = -1
     return engine.subscribe((s) => {
+      const t = Math.min(1, Math.max(0, (s.hour - DAY_START) / (DAY_END - DAY_START)))
+      const p = arcPoint(t)
+      if (Math.abs(p.x - lastX) > 0.05) {
+        lastX = p.x
+        dotRef.current?.setAttribute('cx', p.x.toFixed(2))
+        dotRef.current?.setAttribute('cy', p.y.toFixed(2))
+        clipRef.current?.setAttribute('width', p.x.toFixed(2))
+      }
       const clock = clockOf(s.hour)
-      if (clock !== last) {
-        last = clock
+      if (clock !== lastClock) {
+        lastClock = clock
         if (clockRef.current) clockRef.current.textContent = clock
       }
     })
@@ -30,9 +62,30 @@ export function Hud({ engine }: { engine: DayEngine }) {
       >
         Ömer Taşkaya
       </a>
-      <p aria-hidden className="c-fg mono text-[10px] tracking-[0.22em]">
-        <span ref={clockRef}>05:41</span>
-      </p>
+      <span aria-hidden className="flex items-baseline gap-2.5">
+        <svg
+          viewBox="0 0 100 32"
+          className="h-[18px] w-[56px] overflow-visible md:w-[64px]"
+        >
+          <defs>
+            <clipPath id="day-elapsed">
+              <rect ref={clipRef} x="0" y="0" width="4" height="32" />
+            </clipPath>
+          </defs>
+          <path d={ARC_D} fill="none" stroke="var(--line)" strokeWidth="1.6" />
+          <path
+            d={ARC_D}
+            fill="none"
+            stroke="var(--fg)"
+            strokeWidth="1.6"
+            clipPath="url(#day-elapsed)"
+          />
+          <circle ref={dotRef} cx={P0.x} cy={P0.y} r="3" fill="var(--acc)" />
+        </svg>
+        <span ref={clockRef} className="c-fg mono text-[10px] tracking-[0.22em]">
+          05:41
+        </span>
+      </span>
     </header>
   )
 }
