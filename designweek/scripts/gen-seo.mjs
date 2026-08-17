@@ -14,7 +14,7 @@ import { dirname, resolve } from 'node:path'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const CSV = resolve(HERE, '../events.csv')
-const SITE = 'https://otaskaya.me'
+const SITE = 'https://www.otaskaya.me'
 const PAGE = `${SITE}/designweek`
 
 const DESCRIPTION =

@@ -1,4 +1,5 @@
-import { EMAIL, EMAIL_DISPLAY, PAINTINGS, PROJECTS, QUOTE, SOCIALS } from '../data'
+import { useState } from 'react'
+import { EMAIL_DISPLAY, emailAddress, PAINTINGS, PROJECTS, QUOTE, SOCIALS } from '../data'
 import { Stamp } from '../ui/bits'
 
 const SHELL = 'relative mx-auto w-full max-w-5xl px-5 md:px-10'
@@ -67,12 +68,21 @@ export function Contact() {
   return (
     <section id="contact" data-hour="25.8" className={`${SHELL} mt-36`}>
       <Stamp time="02:00" title="Write to me" />
-      <a
-        href={`mailto:${EMAIL}`}
-        className="serif c-fg rv b-line inline-block border-b pb-1 text-[clamp(1.2rem,4.4vw,2.4rem)] leading-tight"
+      {/*
+        A button, not an <a href="mailto:…">: the address is assembled at click
+        time so it is never present in the markup for a harvester to scrape.
+        Behaviour for a human is unchanged — it still opens their mail client.
+      */}
+      <button
+        type="button"
+        aria-label="Email Ömer Taşkaya"
+        onClick={() => {
+          window.location.href = `mailto:${emailAddress()}`
+        }}
+        className="serif c-fg rv b-line inline-block cursor-pointer border-b pb-1 text-left text-[clamp(1.2rem,4.4vw,2.4rem)] leading-tight"
       >
         {EMAIL_DISPLAY}
-      </a>
+      </button>
       <div className="rv mt-8 flex items-center gap-7">
         {SOCIALS.map((s) => {
           const Icon = ICONS[s.label]
@@ -97,8 +107,16 @@ export function Contact() {
 /* ————— 03:30 · The ending — quote, painting, out. One viewport. ————— */
 
 export function Ending() {
-  /* When the collection grows past one work, this picks per visit. */
-  const painting = PAINTINGS[Math.floor(Math.random() * PAINTINGS.length)]
+  /*
+    One work per visit, once the collection grows past one. The pick sits in
+    state behind a lazy initialiser so it is made a single time, on mount:
+    a bare Math.random() in the render body is an impure render that re-rolls
+    on every pass — twice per mount under StrictMode — and would let the
+    painting change out from under a reveal animation.
+  */
+  const [painting] = useState(
+    () => PAINTINGS[Math.floor(Math.random() * PAINTINGS.length)],
+  )
 
   return (
     <section

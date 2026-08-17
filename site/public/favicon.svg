@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Ömer Taşkaya">
+  <!--
+    The day arc — the same instrument mark the HUD draws (src/ui/Hud.tsx):
+    a quadratic arc for the day, an amber dot riding it at its apex. Purely
+    geometric, so it needs no font and still reads at 16px.
+
+    favicon.ico and apple-touch-icon.png are rasterised from this same
+    geometry; keep all three in step if you change it.
+  -->
+  <rect width="32" height="32" fill="#0a0e1a" />
+  <path
+    d="M 4 22 Q 16 9 28 22"
+    fill="none"
+    stroke="#c8cfda"
+    stroke-width="2.4"
+    stroke-linecap="round"
+  />
+  <circle cx="16" cy="15.5" r="3.8" fill="#e8a64c" />
+</svg>

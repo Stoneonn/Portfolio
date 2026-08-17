@@ -68,28 +68,20 @@ export const EDUCATION: School[] = [
     name: 'Bocconi University',
     degree: 'BSc Economics & Management',
     url: 'https://www.unibocconi.it/en',
-    logo: '/logos/bocconi_logo.png',
+    logo: '/logos/bocconi_logo.webp',
   },
   {
     name: 'UWC Dilijan',
     degree: 'IB Diploma',
     url: 'https://uwcdilijan.org',
-    logo: '/logos/uwcdilijan_logo.png',
+    logo: '/logos/uwcdilijan_logo.webp',
   },
   {
     name: 'TEV İnanç Türkeş High School',
     degree: 'T21C',
     url: 'https://tevitol.k12.tr/',
-    logo: '/logos/tevitol.png',
+    logo: '/logos/tevitol.webp',
   },
-]
-
-export const PHOTOS = [
-  { src: '/photos/01-portrait.jpg', alt: 'Portrait' },
-  { src: '/photos/02-stage.jpg', alt: 'Speaking on stage' },
-  { src: '/photos/03-camera.jpg', alt: 'Holding a camera' },
-  { src: '/photos/04-road.jpg', alt: 'On the road' },
-  { src: '/photos/05-snow.jpg', alt: 'In the snow' },
 ]
 
 export type Project = {
@@ -100,11 +92,18 @@ export type Project = {
   live?: boolean
 }
 
-/* Equal citizens; the one that shipped last gets one accent, nothing more. */
+/*
+  Equal citizens; the one that shipped last gets one accent, nothing more.
+  `live` marks the most recent, so move it when something newer ships.
+
+  The line used to say "this year… to explore", which read as upcoming — MDW
+  2026 ran 20-26 April 2026 and is past. Keep this in the past tense until the
+  2027 edition replaces it.
+*/
 export const PROJECTS: Project[] = [
   {
     name: 'MDW 2026',
-    line: 'My personal selection to the Milan Design Week this year, curated to explore.',
+    line: 'My personal selection for Milan Design Week 2026 — thirty exhibitions across Milano.',
     url: '/designweek',
     tag: 'APR 2026',
     live: true,
@@ -185,7 +184,7 @@ export type Painting = {
 */
 export const PAINTINGS: Painting[] = [
   {
-    src: '/paintings/dusk-on-the-golden-horn.jpg',
+    src: '/paintings/dusk-on-the-golden-horn.webp',
     title: 'Dusk on the Golden Horn',
     artist: 'Ivan Aivazovsky',
     year: '1845',
@@ -193,9 +192,18 @@ export const PAINTINGS: Painting[] = [
   },
 ]
 
-export const EMAIL = 'omertaskaya@gmail.com'
+/*
+  The address is stored in halves and only joined on a click. That keeps the
+  literal string out of the served HTML, out of the noscript fallback, and out
+  of the JS bundle — the three places a harvester scanning for `mailto:` or
+  /\S+@\S+/ would find it. Deliberately not exported: nothing should be able to
+  rebuild the address except emailAddress(), at the moment a human asks for it.
+*/
+const EMAIL_PARTS = ['omertaskaya', 'gmail.com'] as const
 
-export const EMAIL_DISPLAY = 'omertaskaya [at] gmail.com'
+export const EMAIL_DISPLAY = `${EMAIL_PARTS[0]} [at] ${EMAIL_PARTS[1]}`
+
+export const emailAddress = (): string => EMAIL_PARTS.join('@')
 
 export const SOCIALS = [
   { label: 'Instagram', url: 'https://www.instagram.com/otaskaya_' },

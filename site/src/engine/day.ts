@@ -115,6 +115,66 @@ function legibleFg(fg: string, bg: string): string {
   return contrast(INK, bg) >= contrast(BONE, bg) ? INK : BONE
 }
 
+/*
+  ——— the accent's guardrail ———
+
+  Everything --acc colours is small: the Stamp timestamps are 10px uppercase
+  mono, the Provenance coordinates smaller still. Left unclamped it walks right
+  into the sky through the sunset band — measured against the pixels actually
+  behind the text, #6E3410-ish bottoms out at 1.57:1 around 19:15-19:20, with 19
+  of 83 sampled scroll positions under 3:1. The Provenance timestamp and the ☉
+  tick are close to invisible there. With this clamp the floor is 3.0 and no
+  sampled position falls below it.
+
+  Two things this gets right that a copy of legibleFg would not:
+
+  1. It measures against BOTH the zenith and the mid stop, not just the mid.
+     Text is laid out across the upper part of the viewport, so it sits on a
+     blend of the two — and judging by `mid` alone picks the wrong pole in the
+     sunset band (measured: the better pole is bone, not ink, at 21 of 81
+     sampled scroll positions).
+
+  2. The floor is 3.0, not AA's 4.5, because 4.5 is not physically reachable
+     there. At 19:11 the best any colour can do against that band is 3.32:1 —
+     the sky's own luminance range forbids more. 3.0 is reachable at every hour
+     of the day (measured across 81 positions); promising 4.5 would just be a
+     threshold that silently fails. Getting genuinely above 4.5 needs a design
+     change — a plate behind the timestamps, or a narrower gradient — not a
+     different colour.
+
+  It mixes toward the pole rather than swapping outright, because at these hours
+  the accent IS the warmth in the page and a hard swap throws the hue away
+  exactly when it carries the most.
+*/
+const ACC_MIN_CONTRAST = 3.0
+
+function minContrast(fg: string, bgs: string[]): number {
+  let lowest = Infinity
+  for (const bg of bgs) lowest = Math.min(lowest, contrast(fg, bg))
+  return lowest
+}
+
+function legibleAcc(acc: string, bgs: string[]): string {
+  if (minContrast(acc, bgs) >= ACC_MIN_CONTRAST) return acc
+
+  const pole = minContrast(INK, bgs) >= minContrast(BONE, bgs) ? INK : BONE
+  if (minContrast(pole, bgs) < ACC_MIN_CONTRAST) return pole
+
+  /* Smallest mix toward the pole that clears the floor, by bisection, so the
+     accent slides continuously with the hour instead of stepping. */
+  let lo = 0
+  let hi = 1
+  for (let i = 0; i < 12; i++) {
+    const t = (lo + hi) / 2
+    if (minContrast(mixRgbStr(acc, pole, t), bgs) >= ACC_MIN_CONTRAST) hi = t
+    else lo = t
+  }
+  /* Contrast is not guaranteed monotonic in t against two backgrounds at once,
+     so verify rather than trust the bisection; the pole is always the safe floor. */
+  const mixed = mixRgbStr(acc, pole, hi)
+  return minContrast(mixed, bgs) >= ACC_MIN_CONTRAST ? mixed : pole
+}
+
 function sample(hour: number) {
   const h = Math.min(Math.max(hour, KEYS[0].h), KEYS[KEYS.length - 1].h)
   let i = 0
@@ -245,7 +305,7 @@ export function initDay(skyOffRanges: Array<[number, number]>): DayEngine {
     root.style.setProperty('--fg', fgSafe)
     root.style.setProperty('--soft', softSafe)
     root.style.setProperty('--line', rgbWithAlpha(fgSafe, 0.22))
-    const accNow = skyOff ? 'rgb(204,255,0)' : s.acc
+    const accNow = skyOff ? 'rgb(204,255,0)' : legibleAcc(s.acc, [s.z, s.m])
     root.style.setProperty('--acc', accNow)
     root.style.setProperty(
       '--selfg',

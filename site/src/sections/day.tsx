@@ -106,7 +106,7 @@ export function Education() {
         </div>
         <figure className="expose md:col-span-5 md:self-end">
           <img
-            src="/photos/02-stage.jpg"
+            src="/photos/02-stage.webp"
             alt="Ömer speaking on stage"
             loading="lazy"
             className="w-full object-cover"
@@ -125,16 +125,16 @@ export function Photos() {
       <Stamp time="15:30" title="Photographs" />
       <div className="grid grid-cols-12 gap-y-6 md:gap-y-10">
         <figure className="expose col-span-12 md:-mx-10">
-          <img src="/photos/03-camera.jpg" alt="With a camera, in the green" className="w-full object-cover" loading="lazy" />
+          <img src="/photos/03-camera.webp" alt="With a camera, in the green" className="w-full object-cover" loading="lazy" />
         </figure>
         <figure className="expose col-span-7 col-start-6 -mt-2 md:col-span-5 md:col-start-8">
-          <img src="/photos/04-road.jpg" alt="A road" className="w-full object-cover" loading="lazy" />
+          <img src="/photos/04-road.webp" alt="A road" className="w-full object-cover" loading="lazy" />
         </figure>
         <figure className="expose col-span-8 col-start-1 md:col-span-6">
-          <img src="/photos/05-snow.jpg" alt="Snow, uphill" className="w-full object-cover" loading="lazy" />
+          <img src="/photos/05-snow.webp" alt="Snow, uphill" className="w-full object-cover" loading="lazy" />
         </figure>
         <figure className="expose col-span-5 col-start-8 -mt-10 md:col-span-3 md:col-start-9 md:-mt-24">
-          <img src="/photos/01-portrait.jpg" alt="Portrait of Ömer" className="w-full object-cover" loading="lazy" />
+          <img src="/photos/01-portrait.webp" alt="Portrait of Ömer" className="w-full object-cover" loading="lazy" />
         </figure>
       </div>
     </section>
