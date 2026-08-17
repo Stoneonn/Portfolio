@@ -35,6 +35,29 @@ const key = keyFile.replace(/\.txt$/, '')
 /* keep in step with the routes in seo.ts */
 const paths = process.argv.slice(2).length ? process.argv.slice(2) : ['/', '/designweek']
 
+/*
+  Pre-flight: confirm the key file is actually live and byte-exact.
+
+  This matters more than it looks. The API returns 202 for a submission whose
+  key it has not validated — including one whose key is plain wrong (verified:
+  a bogus key with a 404 keyLocation also returns 202, with no error body).
+  So a 202 is not evidence of anything, and a broken key file would fail
+  silently forever. Checking it here turns that into a loud failure.
+
+  Once the key is validated, submissions return 200.
+*/
+const keyUrl = `${SITE}/${keyFile}`
+try {
+  const res = await fetch(keyUrl)
+  const body = await res.text()
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  if (body !== key) throw new Error(`serves ${JSON.stringify(body.slice(0, 40))}, expected the key`)
+} catch (err) {
+  console.error(`indexnow: key file at ${keyUrl} is not usable — ${err.message}`)
+  console.error('indexnow: refusing to submit; every request would sit unvalidated at 202')
+  process.exit(1)
+}
+
 let failed = false
 for (const path of paths) {
   const url = `${SITE}${path}`
@@ -45,9 +68,13 @@ for (const path of paths) {
   })
   try {
     const res = await fetch(`${ENDPOINT}?${query}`, { method: 'GET' })
-    /* 200 accepted, 202 accepted but key still being validated */
-    if (res.ok || res.status === 202) {
-      console.log(`indexnow: ${res.status} ${url}`)
+    if (res.status === 200) {
+      console.log(`indexnow: 200 submitted ${url}`)
+    } else if (res.status === 202) {
+      /* Not a failure, but not a success either — the key check above passed, so
+         this should resolve to 200 on the next deploy. Worth seeing in the log
+         if it never does. */
+      console.log(`indexnow: 202 queued, key validation pending — ${url}`)
     } else {
       failed = true
       console.error(`indexnow: ${res.status} ${res.statusText} for ${url} — ${await res.text()}`)
