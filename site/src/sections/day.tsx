@@ -91,6 +91,15 @@ export function Education() {
                 >
                   {s.name}
                 </h3>
+                {/*
+                  alt="" is deliberate, not an oversight. The institution's name
+                  is the <h3> directly above this logo, so alt="Bocconi
+                  University logo" would make a screen reader announce it twice.
+                  W3C's guidance is to mark an image empty when adjacent text
+                  already carries its meaning. Automated SEO checkers flag this
+                  as "missing alt text"; they are wrong here — the name is in
+                  the HTML, so nothing is lost to a crawler either.
+                */}
                 <img
                   src={s.logo}
                   alt=""
@@ -107,7 +116,7 @@ export function Education() {
         <figure className="expose md:col-span-5 md:self-end">
           <img
             src="/photos/02-stage.webp"
-            alt="Ömer speaking on stage"
+            alt="Ömer standing among a seated audience with both thumbs up, in front of a presentation screen"
             loading="lazy"
             className="w-full object-cover"
           />
@@ -125,16 +134,16 @@ export function Photos() {
       <Stamp time="15:30" title="Photographs" />
       <div className="grid grid-cols-12 gap-y-6 md:gap-y-10">
         <figure className="expose col-span-12 md:-mx-10">
-          <img src="/photos/03-camera.webp" alt="With a camera, in the green" className="w-full object-cover" loading="lazy" />
+          <img src="/photos/03-camera.webp" alt="Ömer raising a compact camera to frame a shot, lilac in bloom and hills behind him at dusk" className="w-full object-cover" loading="lazy" />
         </figure>
         <figure className="expose col-span-7 col-start-6 -mt-2 md:col-span-5 md:col-start-8">
-          <img src="/photos/04-road.webp" alt="A road" className="w-full object-cover" loading="lazy" />
+          <img src="/photos/04-road.webp" alt="Ömer from behind, arm out and thumb up, hitchhiking on a tree-lined road" className="w-full object-cover" loading="lazy" />
         </figure>
         <figure className="expose col-span-8 col-start-1 md:col-span-6">
-          <img src="/photos/05-snow.webp" alt="Snow, uphill" className="w-full object-cover" loading="lazy" />
+          <img src="/photos/05-snow.webp" alt="Ömer in a dark beanie on a snowed-in forest trail, a cross-country skier climbing behind him" className="w-full object-cover" loading="lazy" />
         </figure>
         <figure className="expose col-span-5 col-start-8 -mt-10 md:col-span-3 md:col-start-9 md:-mt-24">
-          <img src="/photos/01-portrait.webp" alt="Portrait of Ömer" className="w-full object-cover" loading="lazy" />
+          <img src="/photos/01-portrait.webp" alt="Portrait of Ömer in a black leather jacket over a burgundy shirt, exposed ducting behind" className="w-full object-cover" loading="lazy" />
         </figure>
       </div>
     </section>

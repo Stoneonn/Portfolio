@@ -1,6 +1,6 @@
 import { execFileSync } from 'node:child_process'
 import type { Plugin } from 'vite'
-import { EDUCATION, PROJECTS, SOCIALS } from './src/data'
+import { CITIES, EDUCATION, INSTRUMENTS, PROJECTS, SOCIALS } from './src/data'
 
 /*
   Build-time SEO artefacts, generated from data.ts so they cannot drift from the
@@ -127,6 +127,65 @@ function sitemapXml(): string {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
 }
 
+/*
+  ——— llms.txt ———
+
+  The llmstxt.org convention: a plain-markdown map of the site for language
+  models, so an agent can answer about this person without executing the app or
+  inferring structure from markup.
+
+  Worth being straight about its status: it is a proposed convention, not a
+  standard, and no major model provider has committed to reading it. It is
+  generated here rather than hand-written purely so it cannot fall out of step
+  with data.ts — the cost is a few lines, and if adoption arrives the file is
+  already correct.
+
+  Everything below is drawn from data.ts. Nothing is asserted here that the page
+  does not also say, which is the same rule the JSON-LD follows.
+*/
+function llmsTxt(): string {
+  const absolute = (u: string) => (u.startsWith('/') ? `${SITE}${u}` : u)
+
+  const projects = PROJECTS.map((p) => `- [${p.name}](${absolute(p.url)}): ${p.line}`).join('\n')
+  const education = EDUCATION.map((e) => `- [${e.name}](${e.url}): ${e.degree}`).join('\n')
+  const cities = CITIES.map((c) => `- ${c.name} — ${c.gloss}`).join('\n')
+  const elsewhere = [...SOCIALS.map((s) => `- [${s.label}](${s.url})`),
+    ...INSTRUMENTS.map((i) => `- [${i.name}](${i.url}): ${i.line}`)].join('\n')
+
+  return `# Ömer Taşkaya
+
+> ${DESCRIPTION}
+
+Personal site of Ömer Taşkaya. One page, structured as a single day: scrolling
+moves through the hours from 05:41 to 05:41 the following morning, and each
+section carries the hour it belongs to.
+
+## Work
+
+${projects}
+
+## Education
+
+${education}
+
+## Places lived
+
+${cities}
+
+## Elsewhere
+
+${elsewhere}
+
+## Notes
+
+- Canonical host is ${SITE}. The apex redirects here.
+- Reading list on the site covers world news, specialised economic research,
+  opinion, Turkish and Russian press, and culture.
+- Contact is by email, shown on the site and assembled in the browser rather
+  than published as a mailto: link.
+`
+}
+
 export function seo(): Plugin {
   let isSsrBuild = false
   return {
@@ -143,11 +202,16 @@ export function seo(): Plugin {
         res.setHeader('Content-Type', 'application/xml; charset=utf-8')
         res.end(sitemapXml())
       })
+      server.middlewares.use('/llms.txt', (_req, res) => {
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+        res.end(llmsTxt())
+      })
     },
     generateBundle() {
       /* the SSR pass writes to dist-ssr/, which is deleted after prerendering */
       if (isSsrBuild) return
       this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: sitemapXml() })
+      this.emitFile({ type: 'asset', fileName: 'llms.txt', source: llmsTxt() })
     },
   }
 }
