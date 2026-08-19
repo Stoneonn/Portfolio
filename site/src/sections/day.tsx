@@ -1,7 +1,17 @@
-import { EDUCATION, PRESS_CATEGORIES, WIRE } from '../data'
+import { EDUCATION, PRESS_CATEGORIES, WIRE, photo } from '../data'
 import { Stamp } from '../ui/bits'
 
 const SHELL = 'relative mx-auto w-full max-w-5xl px-5 md:px-10'
+
+/*
+  src and alt come from PHOTOS in data.ts so the image sitemap generated in
+  seo.ts describes exactly the images this page renders. Placement stays with
+  each <figure> — the collage is hand-set and no two are alike.
+*/
+function Shot({ id }: { id: string }) {
+  const { src, alt } = photo(id)
+  return <img src={src} alt={alt} loading="lazy" className="w-full object-cover" />
+}
 
 /* ————— 05:41 ————— */
 
@@ -114,12 +124,7 @@ export function Education() {
           ))}
         </div>
         <figure className="expose md:col-span-5 md:self-end">
-          <img
-            src="/photos/02-stage.webp"
-            alt="Ömer standing among a seated audience with both thumbs up, in front of a presentation screen"
-            loading="lazy"
-            className="w-full object-cover"
-          />
+          <Shot id="presentation" />
         </figure>
       </div>
     </section>
@@ -134,16 +139,16 @@ export function Photos() {
       <Stamp time="15:30" title="Photographs" />
       <div className="grid grid-cols-12 gap-y-6 md:gap-y-10">
         <figure className="expose col-span-12 md:-mx-10">
-          <img src="/photos/03-camera.webp" alt="Ömer raising a compact camera to frame a shot, lilac in bloom and hills behind him at dusk" className="w-full object-cover" loading="lazy" />
+          <Shot id="camera" />
         </figure>
         <figure className="expose col-span-7 col-start-6 -mt-2 md:col-span-5 md:col-start-8">
-          <img src="/photos/04-road.webp" alt="Ömer from behind, arm out and thumb up, hitchhiking on a tree-lined road" className="w-full object-cover" loading="lazy" />
+          <Shot id="hitchhiking" />
         </figure>
         <figure className="expose col-span-8 col-start-1 md:col-span-6">
-          <img src="/photos/05-snow.webp" alt="Ömer in a dark beanie on a snowed-in forest trail, a cross-country skier climbing behind him" className="w-full object-cover" loading="lazy" />
+          <Shot id="winter" />
         </figure>
         <figure className="expose col-span-5 col-start-8 -mt-10 md:col-span-3 md:col-start-9 md:-mt-24">
-          <img src="/photos/01-portrait.webp" alt="Portrait of Ömer in a black leather jacket over a burgundy shirt, exposed ducting behind" className="w-full object-cover" loading="lazy" />
+          <Shot id="portrait" />
         </figure>
       </div>
     </section>

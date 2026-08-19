@@ -7,8 +7,43 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "otaskaya.me" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "otaskaya.me"
+        }
+      ],
       "destination": "https://www.otaskaya.me/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "/photos/01-portrait.webp",
+      "destination": "/photos/omer-taskaya-portrait.webp",
+      "statusCode": 301
+    },
+    {
+      "source": "/photos/01-portrait.jpg",
+      "destination": "/photos/omer-taskaya-portrait.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/photos/02-stage.webp",
+      "destination": "/photos/omer-taskaya-presentation.webp",
+      "statusCode": 301
+    },
+    {
+      "source": "/photos/03-camera.webp",
+      "destination": "/photos/omer-taskaya-with-camera.webp",
+      "statusCode": 301
+    },
+    {
+      "source": "/photos/04-road.webp",
+      "destination": "/photos/omer-taskaya-hitchhiking.webp",
+      "statusCode": 301
+    },
+    {
+      "source": "/photos/05-snow.webp",
+      "destination": "/photos/omer-taskaya-winter-trail.webp",
       "statusCode": 301
     }
   ],
@@ -16,19 +51,28 @@
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/designweek/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/fonts/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
@@ -43,13 +87,19 @@
     {
       "source": "/(favicon.ico|favicon.svg|apple-touch-icon.png)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
       ]
     },
     {
       "source": "/(robots.txt|sitemap.xml)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
       ]
     }
   ]

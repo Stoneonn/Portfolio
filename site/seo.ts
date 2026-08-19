@@ -1,6 +1,6 @@
 import { execFileSync } from 'node:child_process'
 import type { Plugin } from 'vite'
-import { CITIES, EDUCATION, INSTRUMENTS, PROJECTS, SOCIALS } from './src/data'
+import { CITIES, EDUCATION, INSTRUMENTS, PAINTINGS, PHOTOS, PROJECTS, SOCIALS } from './src/data'
 
 /*
   Build-time SEO artefacts, generated from data.ts so they cannot drift from the
@@ -32,7 +32,7 @@ const person = {
   '@type': 'Person',
   name: 'Ömer Taşkaya',
   url: `${SITE}/`,
-  image: `${SITE}/photos/01-portrait.jpg`,
+  image: `${SITE}/photos/omer-taskaya-portrait.jpg`,
   description: DESCRIPTION,
   nationality: { '@type': 'Country', name: 'Türkiye' },
   homeLocation: { '@type': 'Place', name: 'Milano, Italy' },
@@ -117,14 +117,36 @@ function lastCommitDate(path: string): string {
   return new Date().toISOString().slice(0, 10)
 }
 
+/*
+  Images are declared with the sitemap image extension. Google will not surface
+  a picture in Image search until it has crawled the page that hosts it, and
+  this is the most direct way to tell it which images that page actually holds
+  rather than leaving it to discover them by rendering.
+
+  Only <image:loc> is emitted: Google deprecated <image:title>, <image:caption>,
+  <image:geo_location> and <image:license> in 2022 and ignores them now. The
+  descriptive part of the signal lives in the filename and the alt attribute
+  instead, which is why PHOTOS carries both.
+
+  Every image belongs to the homepage — /designweek is a separate app with its
+  own assets, so it gets no image entries here.
+*/
+const HOMEPAGE_IMAGES = [...PHOTOS.map((p) => p.src), ...PAINTINGS.map((p) => p.src)]
+
 function sitemapXml(): string {
   const urls = [...new Set(routes)]
     .map((r) => {
       const lastmod = lastCommitDate(routeSources[r] ?? ':/site')
-      return `  <url>\n    <loc>${SITE}${r}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`
+      const images =
+        r === '/'
+          ? HOMEPAGE_IMAGES.map(
+              (src) => `\n    <image:image>\n      <image:loc>${SITE}${src}</image:loc>\n    </image:image>`,
+            ).join('')
+          : ''
+      return `  <url>\n    <loc>${SITE}${r}</loc>\n    <lastmod>${lastmod}</lastmod>${images}\n  </url>`
     })
     .join('\n')
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls}\n</urlset>\n`
 }
 
 /*

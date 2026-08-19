@@ -209,3 +209,52 @@ export const SOCIALS = [
   { label: 'Instagram', url: 'https://www.instagram.com/otaskaya_' },
   { label: 'LinkedIn', url: 'https://www.linkedin.com/in/otaskaya' },
 ]
+
+/* ————— Photographs ————— */
+
+export type Photo = { id: string; src: string; alt: string }
+
+/*
+  The photographs live here, not inline in the JSX, so the image sitemap in
+  seo.ts and the collage in sections/day.tsx cannot disagree about what exists.
+  Layout stays in the JSX — every figure is placed by hand and none of them
+  share a shape.
+
+  Filenames are descriptive on purpose: Google treats the filename as a signal
+  for image search, and `04-road.webp` told it nothing — worse, it was wrong,
+  since the picture is of hitchhiking rather than a road. The old paths are
+  redirected in ../vercel.json so nothing that already fetched them 404s.
+*/
+export const PHOTOS: Photo[] = [
+  {
+    id: 'presentation',
+    src: '/photos/omer-taskaya-presentation.webp',
+    alt: 'Ömer standing among a seated audience with both thumbs up, in front of a presentation screen',
+  },
+  {
+    id: 'camera',
+    src: '/photos/omer-taskaya-with-camera.webp',
+    alt: 'Ömer raising a compact camera to frame a shot, lilac in bloom and hills behind him at dusk',
+  },
+  {
+    id: 'hitchhiking',
+    src: '/photos/omer-taskaya-hitchhiking.webp',
+    alt: 'Ömer from behind, arm out and thumb up, hitchhiking on a tree-lined road',
+  },
+  {
+    id: 'winter',
+    src: '/photos/omer-taskaya-winter-trail.webp',
+    alt: 'Ömer in a dark beanie on a snowed-in forest trail, a cross-country skier climbing behind him',
+  },
+  {
+    id: 'portrait',
+    src: '/photos/omer-taskaya-portrait.webp',
+    alt: 'Portrait of Ömer in a black leather jacket over a burgundy shirt, exposed ducting behind',
+  },
+]
+
+export const photo = (id: string): Photo => {
+  const found = PHOTOS.find((p) => p.id === id)
+  if (!found) throw new Error(`photo: no entry with id "${id}"`)
+  return found
+}
