@@ -212,7 +212,7 @@ export const SOCIALS = [
 
 /* ————— Photographs ————— */
 
-export type Photo = { id: string; src: string; alt: string }
+export type Photo = { id: string; src: string; alt: string; title: string }
 
 /*
   The photographs live here, not inline in the JSX, so the image sitemap in
@@ -228,26 +228,31 @@ export type Photo = { id: string; src: string; alt: string }
 export const PHOTOS: Photo[] = [
   {
     id: 'presentation',
+    title: 'Ömer Taşkaya presenting to an audience',
     src: '/photos/omer-taskaya-presentation.webp',
     alt: 'Ömer standing among a seated audience with both thumbs up, in front of a presentation screen',
   },
   {
     id: 'camera',
+    title: 'Ömer Taşkaya photographing at dusk',
     src: '/photos/omer-taskaya-with-camera.webp',
     alt: 'Ömer raising a compact camera to frame a shot, lilac in bloom and hills behind him at dusk',
   },
   {
     id: 'hitchhiking',
+    title: 'Ömer Taşkaya hitchhiking',
     src: '/photos/omer-taskaya-hitchhiking.webp',
     alt: 'Ömer from behind, arm out and thumb up, hitchhiking on a tree-lined road',
   },
   {
     id: 'winter',
+    title: 'Ömer Taşkaya on a winter trail',
     src: '/photos/omer-taskaya-winter-trail.webp',
     alt: 'Ömer in a dark beanie on a snowed-in forest trail, a cross-country skier climbing behind him',
   },
   {
     id: 'portrait',
+    title: 'Ömer Taşkaya',
     src: '/photos/omer-taskaya-portrait.webp',
     alt: 'Portrait of Ömer in a black leather jacket over a burgundy shirt, exposed ducting behind',
   },

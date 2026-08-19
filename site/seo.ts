@@ -61,6 +61,49 @@ const website = {
   author: { '@type': 'Person', name: 'Ömer Taşkaya' },
 }
 
+/*
+  ——— ImageObject structured data ———
+
+  The invisible half of image SEO. Google reads ImageObject to understand what a
+  picture depicts; nothing here renders on the page, and nothing here describes
+  anything the page does not already show — the images themselves are visible,
+  and this is metadata about them. That distinction is what keeps it inside
+  Google's rule that structured data reflect visible content, rather than being
+  hidden text.
+
+  Deliberately NOT emitted: creator, copyrightNotice and license. Those drive
+  Google's image-credit and licensable-image features, but they are legal and
+  factual claims about authorship — several of these are photographs OF Ömer, so
+  who took them is not something this file can assume. The painting is the one
+  exception: PAINTINGS carries a real attribution, so it gets one.
+*/
+const imageObjects = [
+  ...PHOTOS.map((p) => ({
+    '@context': 'https://schema.org',
+    '@type': 'ImageObject',
+    contentUrl: `${SITE}${p.src}`,
+    url: `${SITE}${p.src}`,
+    name: p.title,
+    description: p.alt,
+    caption: p.alt,
+    about: { '@type': 'Person', name: 'Ömer Taşkaya' },
+    isPartOf: { '@type': 'WebPage', '@id': `${SITE}/` },
+  })),
+  ...PAINTINGS.map((p) => ({
+    '@context': 'https://schema.org',
+    '@type': 'ImageObject',
+    contentUrl: `${SITE}${p.src}`,
+    url: `${SITE}${p.src}`,
+    name: p.title,
+    description: `${p.title} — ${p.artist}, ${p.year}, ${p.medium}`,
+    caption: `${p.title} — ${p.artist}`,
+    creator: { '@type': 'Person', name: p.artist },
+    dateCreated: p.year,
+    artMedium: p.medium,
+    isPartOf: { '@type': 'WebPage', '@id': `${SITE}/` },
+  })),
+]
+
 const headMeta = `
     <meta name="author" content="Ömer Taşkaya" />
     <meta name="robots" content="index,follow" />
@@ -71,7 +114,7 @@ const headMeta = `
     <meta name="twitter:description" content="${attr(DESCRIPTION)}" />
     <meta name="twitter:image" content="${SITE}/paintings/dusk-on-the-golden-horn.jpg" />
     <script type="application/ld+json">${jsonld(person)}</script>
-    <script type="application/ld+json">${jsonld(website)}</script>`
+    <script type="application/ld+json">${jsonld(website)}</script>${imageObjects.map((o) => `\n    <script type="application/ld+json">${jsonld(o)}</script>`).join('')}`
 
 /*
   ——— sitemap.xml ———
